@@ -1,0 +1,14 @@
+{
+  "name": "forthright48-v2",
+  "version": "0.0.0",
+  "description": "My personal website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohammad Samiul Islam",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

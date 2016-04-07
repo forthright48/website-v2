@@ -1,3 +1,26 @@
 body {
-    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    color: #333333;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 5.0rem;
+}
+
+.header {
+    margin-top: 3rem;
+}
+
+.home-toc {
+    margin-top: 5rem;
+}
+
+
+
+/**
+Potential Skeleton Upgrades
+**/
+.u-text-center {
+    text-align: center;
 }

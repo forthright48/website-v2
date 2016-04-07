@@ -1,34 +1,58 @@
-(function(){
+(function() {
     "use strict";
 
-    var express = require ( "express" );
-    var path = require ( "path");
-    var hbs = require ( "hbs" );
+    var express = require("express");
+    var path = require("path");
+    var hbs = require("hbs");
+    var mongoose = require("mongoose");
+    var secret = process.env.SECRET_TOKEN || require("./secret.js").secret; ///Secret object
     var app = express();
-
-    var PORT = 8080;
 
     /***********************************************************
     Configuration
     ***********************************************************/
+    /*Global*/
+    global.root = __dirname;
+
     /*App*/
-    app.set('view engine', 'hbs'); ///Support for handlebars rendering
-    app.set('views', __dirname + '/views');
-    app.use(express.static( path.join ( __dirname, "/public") ) ); ///Configure the public folder
+    app.set("superSecret", secret);
+    app.set('port', process.env.PORT || 8080);
+    app.use(express.static(path.join(__dirname, "/public"))); ///Configure the public folder
 
     /*HBS*/
+    app.set('view engine', 'hbs'); ///Support for handlebars rendering
+    app.set('views', __dirname + '/views');
     hbs.registerPartials(__dirname + '/views/partials');
 
-    app.get ( "/", function( req, res ) {
-        res.render ( "home.hbs" );
+
+    /***********************************************************
+    MongoDB
+    ***********************************************************/
+
+    // Mongoose Connection Code
+    mongoose.connection.on('open', function(ref) {
+        console.log('Connected to mongo server.');
+    });
+    mongoose.connection.on('error', function(err) {
+        console.log('Could not connect to mongo server!');
+        console.log(err);
     });
 
-    app.get ( "/problem-creation", function ( req, res ) {
-        res.render ( "problem-creation/problem-creation.hbs");
+    mongoose.connect(process.env.MONGOLAB_URI || require("./secret.js").db);
+
+    /********************/
+
+
+    app.get("/", function(req, res) {
+        res.render("home.hbs", {
+            subtitle: "home"
+        });
     });
 
-    app.listen ( PORT, function() {
-        console.log(`Server running at port ${ PORT }`);
+    require ( './controller/problem-creation/problem-creation.js')(app);
+
+    app.listen(app.get("port"), function() {
+        console.log(`Server running at port ${ app.get("port") }`);
     });
 
 }());

@@ -1,3 +1,7 @@
+hr {
+    margin: 0;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     color: #333333;
@@ -7,30 +11,49 @@ h1 {
     font-weight: normal;
     font-size: 5.0rem;
 }
-
 .header {
-    margin-top: 3rem;
+    margin-top: 1.5rem;
+}
+.header h1, h2, h3, h4, h5, h5 {
+    margin: 0.5rem;
 }
 
-.home-toc {
-    margin-top: 5rem;
+/*Horizontal Navbar Menu*/
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
-
-
+hr {
+    margin-bottom: 1rem;
+}
+blockquote {
+    max-width: 390px;
+    text-align: center;
+    border-left: 3px solid #ccc;
+    padding-left: 5px;
+    margin: 0 auto;
+    width: auto;
+    display: table
+}
 
 /**
 Potential Skeleton Upgrades
 **/
+
 .u-text-center {
     text-align: center;
 }
 .u-text-left {
-    text-align: left;;
+    text-align: left;
+    ;
 }
 .u-text-right {
-    text-align: right;;
+    text-align: right;
+    ;
 }
-
 .u-inline {
     display: inline-block;
 }

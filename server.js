@@ -11,8 +11,6 @@
     /***********************************************************
     Configuration
     ***********************************************************/
-    /*Global*/
-    global.root = __dirname;
 
     /*App*/
     app.set("superSecret", secret);
@@ -51,8 +49,15 @@
 
     require ( './controller/problem-creation/problem-creation.js')(app);
 
+    app.get ( "/login", function ( req, res ) {
+        res.render ( "users/login.hbs", {
+            subtitle: "login"
+        });
+    });
+
     app.get ( "/*", function ( req, res ) {
         res.render ( "error", {
+            subtitle: "error",
             error: "404",
             realError: "Page Not Found"
         });

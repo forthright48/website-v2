@@ -1,3 +1,5 @@
-node_modules
+node_modules/*
+!node_modules/forthright48
+
 secret.js
 public/css/skeleton.orig.css

@@ -51,6 +51,13 @@
 
     require ( './controller/problem-creation/problem-creation.js')(app);
 
+    app.get ( "/*", function ( req, res ) {
+        res.render ( "error", {
+            error: "404",
+            realError: "Page Not Found"
+        });
+    });
+
     app.listen(app.get("port"), function() {
         console.log(`Server running at port ${ app.get("port") }`);
     });

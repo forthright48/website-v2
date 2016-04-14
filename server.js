@@ -6,6 +6,7 @@
     var hbs = require("hbs");
     var mongoose = require("mongoose");
     var secret = process.env.SECRET_TOKEN || require("./secret.js").secret; ///Secret object
+    var world = require( "forthright48/world");
     var app = express();
 
     /***********************************************************
@@ -56,11 +57,7 @@
     });
 
     app.get ( "/*", function ( req, res ) {
-        res.render ( "error", {
-            subtitle: "error",
-            error: "404",
-            realError: "Page Not Found"
-        });
+        res.render ( "error", world.handleError( "404", "Page not found" ) );
     });
 
     app.listen(app.get("port"), function() {

@@ -12,6 +12,10 @@ body {
     line-height: 1.25;
 }
 
+/*
+Header and Footer
+*/
+
 .header {
     margin-top: 1.5rem;
     line-height: 1;
@@ -24,6 +28,12 @@ body {
 .header h6{
     margin-bottom: 0.25rem;
     line-height: 1.25;
+}
+
+.footer {
+    background-color: tomato;
+    font-size: 1rem;
+    color: gray;
 }
 
 
@@ -43,13 +53,13 @@ hr {
     margin-bottom: 1rem;
 }
 
-.fill-view {
-    flex: 1
-}
 
 /**
 Potential Skeleton Upgrades
 **/
+.fill-view {
+    flex: 1
+}
 
 blockquote {
     text-align: center;

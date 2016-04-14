@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
 }
-.row {
+.box {
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -22,7 +22,7 @@
     align-items: center;
 }
 
-.column, .columns {
+.item, .items {
     flex: 0 0 auto;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -96,36 +96,36 @@
 }
 
 /* Offsets */
-.offset-by-one.column,
-.offset-by-one.columns          { margin-left: 8.66666666667%; }
-.offset-by-two.column,
-.offset-by-two.columns          { margin-left: 17.3333333333%; }
-.offset-by-three.column,
-.offset-by-three.columns        { margin-left: 26%;            }
-.offset-by-four.column,
-.offset-by-four.columns         { margin-left: 34.6666666667%; }
-.offset-by-five.column,
-.offset-by-five.columns         { margin-left: 43.3333333333%; }
-.offset-by-six.column,
-.offset-by-six.columns          { margin-left: 52%;            }
-.offset-by-seven.column,
-.offset-by-seven.columns        { margin-left: 60.6666666667%; }
-.offset-by-eight.column,
-.offset-by-eight.columns        { margin-left: 69.3333333333%; }
-.offset-by-nine.column,
-.offset-by-nine.columns         { margin-left: 78.0%;          }
-.offset-by-ten.column,
-.offset-by-ten.columns          { margin-left: 86.6666666667%; }
-.offset-by-eleven.column,
-.offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+.offset-by-one.item,
+.offset-by-one.items          { margin-left: 8.66666666667%; }
+.offset-by-two.item,
+.offset-by-two.items,          { margin-left: 17.3333333333%; }
+.offset-by-three.item,
+.offset-by-three.items,        { margin-left: 26%;            }
+.offset-by-four.item,
+.offset-by-four.items,         { margin-left: 34.6666666667%; }
+.offset-by-five.item,
+.offset-by-five.items,         { margin-left: 43.3333333333%; }
+.offset-by-six.item,
+.offset-by-six.items,          { margin-left: 52%;            }
+.offset-by-seven.item,
+.offset-by-seven.items,        { margin-left: 60.6666666667%; }
+.offset-by-eight.item,
+.offset-by-eight.items,        { margin-left: 69.3333333333%; }
+.offset-by-nine.item,
+.offset-by-nine.items,         { margin-left: 78.0%;          }
+.offset-by-ten.item,
+.offset-by-ten.items,          { margin-left: 86.6666666667%; }
+.offset-by-eleven.item,
+.offset-by-eleven.items,       { margin-left: 95.3333333333%; }
 
-.offset-by-one-third.column,
-.offset-by-one-third.columns    { margin-left: 34.6666666667%; }
-.offset-by-two-thirds.column,
-.offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+.offset-by-one-third.item,
+.offset-by-one-third.items,    { margin-left: 34.6666666667%; }
+.offset-by-two-thirds.item,
+.offset-by-two-thirds.items,   { margin-left: 69.3333333333%; }
 
-.offset-by-one-half.column,
-.offset-by-one-half.columns     { margin-left: 52%; }
+.offset-by-one-half.item,
+.offset-by-one-half.items     { margin-left: 52%; }
 
 
 /* Base Styles

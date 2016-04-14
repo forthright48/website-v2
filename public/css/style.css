@@ -83,3 +83,7 @@ blockquote {
 .u-inline {
     display: inline-block;
 }
+
+.u-flex-pull-right {
+    margin-left: auto;
+}

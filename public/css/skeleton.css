@@ -387,12 +387,6 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
     flex-basis: 100%;
     box-sizing: border-box;
 }
-.u-pull-right {
-    float: right;
-}
-.u-pull-left {
-    float: left;
-}
 
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

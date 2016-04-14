@@ -9,7 +9,7 @@ App Root: /problem-creation
 
     var express = require ( "express");
     var path = require ( 'path' );
-    var Psetting = require ( path.join ( global.root, "/models/psetting/psetting.js" ) );
+    var Psetting = require ( path.join ( global.root, "/models/psetting/psetting.js" ) ).model;
 
     var router = express.Router();
 

@@ -16,6 +16,8 @@ Model for Psetting database.
 
     var Psetting = mongoose.model("Psetting", schema);
 
-    module.exports = Psetting;
+    module.exports = {
+        model: Psetting
+    };
 
 }());

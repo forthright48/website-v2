@@ -1,17 +1,18 @@
 (function() {
     "use strict";
 
+    var world = require( "forthright48/world");
     var express = require("express");
     var path = require("path");
     var hbs = require("hbs");
     var mongoose = require("mongoose");
-    var secret = process.env.SECRET_TOKEN || require("./secret.js").secret; ///Secret object
-    var world = require( "forthright48/world");
+    var secret = process.env.SECRET_TOKEN || world.secret.secret; ///Secret object
     var app = express();
 
-    /***********************************************************
+
+    /*******************************************
     Configuration
-    ***********************************************************/
+    *******************************************/
 
     /*App*/
     app.set("superSecret", secret);
@@ -24,9 +25,9 @@
     hbs.registerPartials(__dirname + '/views/partials');
 
 
-    /***********************************************************
+    /*******************************************
     MongoDB
-    ***********************************************************/
+    *******************************************/
 
     // Mongoose Connection Code
     mongoose.connection.on('open', function(ref) {
@@ -37,7 +38,7 @@
         console.log(err);
     });
 
-    mongoose.connect(process.env.MONGOLAB_URI || require("./secret.js").db);
+    mongoose.connect(process.env.MONGOLAB_URI || world.secret.db);
 
     /********************/
 

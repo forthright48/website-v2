@@ -99,30 +99,30 @@
 .offset-by-one.item,
 .offset-by-one.items          { margin-left: 8.66666666667%; }
 .offset-by-two.item,
-.offset-by-two.items,          { margin-left: 17.3333333333%; }
+.offset-by-two.items          { margin-left: 17.3333333333%; }
 .offset-by-three.item,
-.offset-by-three.items,        { margin-left: 26%;            }
+.offset-by-three.items        { margin-left: 26%;            }
 .offset-by-four.item,
-.offset-by-four.items,         { margin-left: 34.6666666667%; }
+.offset-by-four.items         { margin-left: 34.6666666667%; }
 .offset-by-five.item,
-.offset-by-five.items,         { margin-left: 43.3333333333%; }
+.offset-by-five.items         { margin-left: 43.3333333333%; }
 .offset-by-six.item,
-.offset-by-six.items,          { margin-left: 52%;            }
+.offset-by-six.items          { margin-left: 52%;            }
 .offset-by-seven.item,
-.offset-by-seven.items,        { margin-left: 60.6666666667%; }
+.offset-by-seven.items        { margin-left: 60.6666666667%; }
 .offset-by-eight.item,
-.offset-by-eight.items,        { margin-left: 69.3333333333%; }
+.offset-by-eight.items        { margin-left: 69.3333333333%; }
 .offset-by-nine.item,
-.offset-by-nine.items,         { margin-left: 78.0%;          }
+.offset-by-nine.items         { margin-left: 78.0%;          }
 .offset-by-ten.item,
-.offset-by-ten.items,          { margin-left: 86.6666666667%; }
+.offset-by-ten.items          { margin-left: 86.6666666667%; }
 .offset-by-eleven.item,
-.offset-by-eleven.items,       { margin-left: 95.3333333333%; }
+.offset-by-eleven.items       { margin-left: 95.3333333333%; }
 
 .offset-by-one-third.item,
-.offset-by-one-third.items,    { margin-left: 34.6666666667%; }
+.offset-by-one-third.items    { margin-left: 34.6666666667%; }
 .offset-by-two-thirds.item,
-.offset-by-two-thirds.items,   { margin-left: 69.3333333333%; }
+.offset-by-two-thirds.items   { margin-left: 69.3333333333%; }
 
 .offset-by-one-half.item,
 .offset-by-one-half.items     { margin-left: 52%; }
@@ -379,11 +379,11 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .u-full-width {
-    flex-basis: 100%;
+    width: 100%;
     box-sizing: border-box;
 }
 .u-max-full-width {
-    flex-basis: 100%;
+    max-width: 100%;
     box-sizing: border-box;
 }
 

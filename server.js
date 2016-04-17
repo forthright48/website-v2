@@ -7,6 +7,9 @@
     var hbs = require("hbs");
     var mongoose = require("mongoose");
     var secret = process.env.SECRET_TOKEN || world.secret.secret; ///Secret object
+    var bodyParser = require('body-parser');
+
+
     var app = express();
 
 
@@ -18,6 +21,8 @@
     app.set("superSecret", secret);
     app.set('port', process.env.PORT || 8080);
     app.use(express.static(path.join(__dirname, "/public"))); ///Configure the public folder
+    app.use(bodyParser.json()); // support json encoded bodies
+    app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
     /*HBS*/
     app.set('view engine', 'hbs'); ///Support for handlebars rendering
@@ -49,9 +54,10 @@
         });
     });
 
-    require ( './controller/problem-creation/problem-creation.js')(app);
+    require ( './controller/problem-creation/problem-creation.js').addRouter(app);
+    require ( './controller/users/register.js').addRouter(app);
 
-    app.get ( "/login", function ( req, res ) {
+    app.get ( "/users/login", function ( req, res ) {
         res.render ( "users/login.hbs", {
             subtitle: "login"
         });

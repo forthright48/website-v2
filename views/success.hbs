@@ -1,0 +1,12 @@
+{{!-- Context: data to print --}}
+
+<div class="box u-fill-view">
+    <div class="twelve items u-text-center">
+        <h1>It Works</h1>
+        <ul>
+            {{#each data}}
+                <li> <b>{{@key}} </b>:{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

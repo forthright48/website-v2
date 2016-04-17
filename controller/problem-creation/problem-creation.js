@@ -16,8 +16,10 @@ App Root: /problem-creation
 
     router.get ( "/", renderRootView);
 
-    module.exports = function ( app ) {
-        app.use ( '/problem-creation', router );
+    module.exports = {
+        addRouter: function ( app ) {
+            app.use ( '/problem-creation', router );
+        }
     };
 
     /*******************************************************

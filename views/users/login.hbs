@@ -5,14 +5,14 @@
             <div class="box">
                 <div class="four items offset-by-four">
                         <label for="username">Username</label>
-                        <input class="u-full-width" type="text" id="username" >
+                        <input class="u-full-width" type="text" id="username" name="username" placeholder="letters and numbers only" required pattern="[a-zA-Z0-9]+">
                 </div>
             </div>
 
             <div class="box">
                 <div class="four items offset-by-four">
                         <label for="password">Password</label>
-                        <input class="u-full-width" type="password" id="password">
+                        <input class="u-full-width" type="password" id="password" name="password" required>
                 </div>
             </div>
 
@@ -21,10 +21,11 @@
                         <button class="u-full-width" type="button" name="button">Login</button>
                 </div>
                 <div class="two items">
-                        <button class="u-full-width" type="button" name="button">Register</button>
+                        <input class="u-full-width" type="submit" formmethod="post" formaction="/users/register" value="Register">
                 </div>
             </div>
 
         </form>
+
     </div>
 </div>

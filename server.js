@@ -55,7 +55,7 @@
     });
 
     require ( './controller/problem-creation/problem-creation.js').addRouter(app);
-    require ( './controller/users/register.js').addRouter(app);
+    require ( './controller/users/login.js').addRouter(app);
 
     app.get ( "/users/login", function ( req, res ) {
         res.render ( "users/login.hbs", {

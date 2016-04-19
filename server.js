@@ -32,7 +32,7 @@
     hbs.registerPartials(__dirname + '/views/partials');
 
     /*DB*/
-    require ( "./models/db.js");
+    require ( "./models/db.js").addSession(app);
 
 
     app.get("/", function(req, res) {

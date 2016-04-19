@@ -27,6 +27,8 @@
         addSession: function(app) {
             app.use( session({
                 secret: secret,
+                resave: false,
+                saveUninitialized: false,
                 store: new MongoStore({
                     mongooseConnection: mongoose.connection
                 })

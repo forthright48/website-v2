@@ -65,9 +65,17 @@
                 return res.render ( "error", world.handleError ( "Password doesn't match" ) );
             }
 
+            //Sucessfully logged in. Create Session
+            req.session.username = req.body.username;
+            req.session.loggedIn = true;
+
             // TODO: User Session
             return res.render ( "success", {
                 title: "Success",
+                data: {
+                    username: req.session.username,
+                    loggedIn: req.session.loggedIn
+                }
             });
         });
     }

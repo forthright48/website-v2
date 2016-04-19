@@ -5,6 +5,8 @@
     var world = require("forthright48/world");
     var mongoose = require("mongoose");
     var secret = process.env.SECRET_TOKEN || world.secret.secret; ///Secret object
+    var session = require('express-session');
+    var MongoStore = require('connect-mongo')(session);
 
     /*******************************************
     MongoDB
@@ -20,5 +22,16 @@
     });
 
     mongoose.connect(process.env.MONGOLAB_URI || world.secret.db);
+
+    module.exports = {
+        addSession: function(app) {
+            app.use( session({
+                secret: secret,
+                store: new MongoStore({
+                    mongooseConnection: mongoose.connection
+                })
+            }));
+        }
+    };
 
 }());

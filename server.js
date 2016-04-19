@@ -19,7 +19,6 @@
     *******************************************/
 
     /*App*/
-    app.set("superSecret", secret);
     app.set('port', process.env.PORT || 8080);
     app.use(express.static(path.join(__dirname, "/public"))); ///Configure the public folder
     app.use(bodyParser.json()); // support json encoded bodies
@@ -32,23 +31,8 @@
     app.set('views', __dirname + '/views');
     hbs.registerPartials(__dirname + '/views/partials');
 
-
-    /*******************************************
-    MongoDB
-    *******************************************/
-
-    // Mongoose Connection Code
-    mongoose.connection.on('open', function(ref) {
-        console.log('Connected to mongo server.');
-    });
-    mongoose.connection.on('error', function(err) {
-        console.log('Could not connect to mongo server!');
-        console.log(err);
-    });
-
-    mongoose.connect(process.env.MONGOLAB_URI || world.secret.db);
-
-    /********************/
+    /*DB*/
+    require ( "./models/db.js");
 
 
     app.get("/", function(req, res) {
@@ -59,12 +43,6 @@
 
     require('./controller/problem-creation/problem-creation.js').addRouter(app);
     require('./controller/users/login.js').addRouter(app);
-
-    app.get("/users/login", function(req, res) {
-        res.render("users/login.hbs", {
-            subtitle: "login"
-        });
-    });
 
     app.get('/*', function createError(req, res, next) {
         return res.render("error.hbs", {

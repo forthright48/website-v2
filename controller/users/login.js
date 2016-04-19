@@ -12,7 +12,8 @@
     var router = express.Router();
 
     router.post ( "/register", register );
-    router.post ( "/login", login );
+    router.post ( "/login", loginPost );
+    router.get ( "/login", loginGet );
 
     module.exports = {
         addRouter: function ( app ) {
@@ -50,7 +51,7 @@
     }
 
     // Login User
-    function login ( req, res ) {
+    function loginPost ( req, res ) {
 
         User.findOne({ username: req.body.username }).exec( function ( err, user ){
             if ( err ) {
@@ -68,6 +69,12 @@
             return res.render ( "success", {
                 title: "Success",
             });
+        });
+    }
+
+    function loginGet (req, res) {
+        res.render("users/login.hbs", {
+            subtitle: "login"
         });
     }
 

@@ -37,12 +37,11 @@
             password: req.body.password
         }, function ( err, user ) {
             if ( err ) {
-                return res.render ( "error", world.handleError ( "Registration problem", err ) );
+                return world.handleError ( res, "Registration problem", err );
             }
 
-            return res.render ( "success", {
-                subtitle: "sucess",
-                title: "User Created",
+            return world.myRender ( req, res, "success", {
+                title: "User created",
                 data: {
                     username: req.body.username
                 }
@@ -56,14 +55,14 @@
 
         User.findOne({ username: req.body.username }).exec( function ( err, user ){
             if ( err ) {
-                return res.render ( "error", world.handleError ( "Login Problem", err ) );
+                return world.handleError ( res, "Login problem", err );
             }
             if ( !user ) {
-                return res.render ( "error", world.handleError ( "No Such User" ) );
+                return world.handleError ( res, "No Such User" );
             }
 
             if ( req.body.password !== user.password ) {
-                return res.render ( "error", world.handleError ( "Password doesn't match" ) );
+                return world.handleError ( res, "Password doesn't match" );
             }
 
             //Sucessfully logged in. Create Session
@@ -71,29 +70,29 @@
             req.session.isLoggedIn = true;
 
             // TODO: User Session
-            return res.render ( "success", {
-                title: "Success",
+            return world.myRender ( req, res, "success", {
+                title: "Successfully logged In",
                 data: {
                     username: req.session.username,
-                    loggedIn: req.session.isLoggedIn
                 }
             });
+
         });
     }
 
     function loginGet (req, res) {
-        return res.render("users/login.hbs", {
-            layoutContext: world.getLayoutContext ( req, "login"),
-        });
+        return world.myRender ( req, res, "users/login", {});
+
     }
 
     function logout ( req, res, next ) {
         req.session.destroy( function ( err ) {
             if ( err ) next(err);
 
-            return res.render ( "success", {
-                title: "Sucessfully Logged Out"
+            return world.myRender ( req, res, "success", {
+                title: "Sucessfully logged out"
             });
+
         });
     }
 

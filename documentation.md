@@ -5,3 +5,5 @@
 1. Comment above lines
 
 1. In http request, make sure to "return".
+
+1. Whenever writing notice, capitalize only the first letter. Keep it normal sentence.

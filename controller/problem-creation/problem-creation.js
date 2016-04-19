@@ -28,15 +28,10 @@ App Root: /problem-creation
     function renderRootView ( req, res ) {
         Psetting.find ( {} ).sort ( "-index").exec( function ( err, data ) {
             if ( err ) {
-                return res.render ( "error.hbs", {
-                    subtitle: "error",
-                    error: "Problem in getting data from Psetting database",
-                    realError: err
-                });
+                return world.handleError ( res, "Problem in getting data from Psetting database", err );
             }
 
-            return res.render ( "problem-creation/problem-creation.hbs", {
-                subtitle: "problem-creation",
+            return world.myRender ( req, res, "problem-creation/problem-creation", {
                 data: data
             });
         });

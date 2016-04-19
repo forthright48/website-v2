@@ -36,20 +36,14 @@
 
 
     app.get("/", function(req, res) {
-        res.render("home.hbs", {
-            subtitle: "home"
-        });
+        return world.myRender ( req, res, "home" );
     });
 
     require('./controller/problem-creation/problem-creation.js').addRouter(app);
     require('./controller/users/login.js').addRouter(app);
 
     app.get('/*', function createError(req, res, next) {
-        return res.render("error.hbs", {
-            subtitle: "error",
-            error: "404 Page Not Found",
-            realError: ""
-        });
+        return world.handleError ( res, "404 Page Not Found" );
     });
 
     app.listen(app.get("port"), function() {

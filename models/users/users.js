@@ -10,7 +10,7 @@ Model for Users Database
     var schema = new mongoose.Schema({
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        status: String, // Type of user [admin,User]
+        status: { type: String, default: "user"}, // Type of user [admin,User]
         doneList: [mongoose.Schema.ObjectId]
     });
 

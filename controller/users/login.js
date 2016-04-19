@@ -14,6 +14,7 @@
     router.post ( "/register", register );
     router.post ( "/login", loginPost );
     router.get ( "/login", loginGet );
+    router.get ( "/logout", logout );
 
     module.exports = {
         addRouter: function ( app ) {
@@ -67,22 +68,32 @@
 
             //Sucessfully logged in. Create Session
             req.session.username = req.body.username;
-            req.session.loggedIn = true;
+            req.session.isLoggedIn = true;
 
             // TODO: User Session
             return res.render ( "success", {
                 title: "Success",
                 data: {
                     username: req.session.username,
-                    loggedIn: req.session.loggedIn
+                    loggedIn: req.session.isLoggedIn
                 }
             });
         });
     }
 
     function loginGet (req, res) {
-        res.render("users/login.hbs", {
-            subtitle: "login"
+        return res.render("users/login.hbs", {
+            layoutContext: world.getLayoutContext ( req, "login"),
+        });
+    }
+
+    function logout ( req, res, next ) {
+        req.session.destroy( function ( err ) {
+            if ( err ) next(err);
+
+            return res.render ( "success", {
+                title: "Sucessfully Logged Out"
+            });
         });
     }
 

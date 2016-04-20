@@ -39,15 +39,16 @@
         return world.myRender ( req, res, "home" );
     });
 
-    require('./controller/problem-creation/problem-creation.js').addRouter(app);
-    require('./controller/users/login.js').addRouter(app);
-
-    app.get('/*', function createError(req, res, next) {
-        return world.handleError ( res, "404 Page Not Found" );
-    });
+    require('./controllers/problem-creation/problem-creation.js').addRouter(app);
+    require('./controllers/users/login.js').addRouter(app);
+    require('./controllers/gateway/gateway.js').addRouter(app);
 
     app.listen(app.get("port"), function() {
         console.log(`Server running at port ${ app.get("port") }`);
+    });
+
+    app.get('/*', function createError(req, res, next) {
+        return world.handleError ( res, "404 Page Not Found" );
     });
 
     app.use(errorhandler()); // Stack trace

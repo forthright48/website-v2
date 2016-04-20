@@ -1,0 +1,17 @@
+<div class="box u-fill-view">
+    <div class="any items">
+        <table align="center">
+            <thead>
+                <th>Index</th><th>Name</th><th>Type</th>
+            </thead>
+            <tbody>
+                {{#each data}}
+                    <tr>
+                        <td>{{@index}}</td><td><a href="/gateway/getChildren/{{_id}}">{{name}}</td><td>{{type}}</td>
+                    </tr>
+
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

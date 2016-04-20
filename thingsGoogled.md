@@ -11,3 +11,6 @@ Why we should use bcrypt
 
 5. [How to make the require in node.js to be always relative to the root folder of the project?](http://stackoverflow.com/questions/10860244/how-to-make-the-require-in-node-js-to-be-always-relative-to-the-root-folder-of-t)  
 How to create a global object wrapped in nodejs
+
+6. [Convert Mongoose docs to json](http://stackoverflow.com/questions/9952649/convert-mongoose-docs-to-json)
+Can't send mongoose doc directly to view. Must use JSON.stringify() on it.

@@ -42,10 +42,16 @@ Header and Footer
     padding: 0;
     margin: 0;
     display: flex;
-    1justify-content: space-around;
+    /*justify-content: space-around;*/
 }
 .navbar li {
     padding-left: 2.5rem;
+}
+.navbar a {
+    text-decoration: none;
+}
+.navbar a:hover {
+    text-decoration: underline;
 }
 
 hr {

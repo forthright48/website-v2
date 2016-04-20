@@ -69,7 +69,6 @@
             req.session.username = req.body.username;
             req.session.isLoggedIn = true;
 
-            // TODO: User Session
             return world.myRender ( req, res, "success", {
                 title: "Successfully logged In",
                 data: {

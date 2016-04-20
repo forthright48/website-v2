@@ -24,6 +24,9 @@
     mongoose.connect(process.env.MONGOLAB_URI || world.secret.db);
 
     module.exports = {
+
+        // TODO: Expire session
+
         addSession: function(app) {
             app.use( session({
                 secret: secret,

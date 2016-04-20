@@ -15,8 +15,10 @@
     </div>
     <div class="any items">
         <ul>
+
             {{#if isLoggedIn}}
-                <li class="u-flex-pull-right"><a href="/users/logout">Logout</a></li>
+                <li class="u-flex-pull-right">{{username}}</li>
+                <li><a href="/users/logout">Logout</a></li>
             {{else}}
                 <li class="u-flex-pull-right"><a href="/users/login">Login/Register</a></li>
             {{/if}}

@@ -2,14 +2,25 @@
     <div class="any items">
         <table align="center">
             <thead>
-                <th>Index</th><th>Name</th><th>Type</th>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Type</th>
             </thead>
             <tbody>
                 {{#each data}}
                     <tr>
-                        <td>{{@index}}</td><td><a href="/gateway/getChildren/{{_id}}">{{name}}</td><td>{{type}}</td>
+                        <td>{{add @index 1 }}</td>
+                        <td><a href="/gateway/getChildren/{{_id}}">{{name}}</td>
+                        <td>
+                            {{#if (compare type "===" "Text") }}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            {{else if ( or (compare type "===" "Section") (compare type "===" "Chapter") ) }}
+                                <i class="fa fa-folder-o" aria-hidden="true"></i>
+                            {{else}}
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                            {{/if}}
+                        </td>
                     </tr>
-
                 {{/each}}
             </tbody>
         </table>

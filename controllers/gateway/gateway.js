@@ -14,6 +14,7 @@
     router.get("/getChildren/:parentID", function(req, res, next) {
         var parentID = req.params.parentID;
 
+        ///Find all the documents whose parentId equals to parentID
         Gate.find({
             parentId: parentID
         }).sort({
@@ -21,11 +22,13 @@
         }).exec(function(err, data ) {
             if (err) next(err);
 
+            ///We also need the parentID document to create "Go Up" button            
             Gate.findOne ( {
                 _id: parentID
             }).exec ( function ( err, root ){
                 if ( err ) next ( err );
 
+                ///What if we are dealing with root directory that has no document
                 root = root || {
                     parentId: '000000000000000000000000'
                 };

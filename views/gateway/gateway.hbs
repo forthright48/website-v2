@@ -3,8 +3,11 @@
         <a href="/gateway/getChildren/{{root.parentId}}">Go Up</a>
     </div>
 </div>
-<div class="box u-fill-view">
-    <div class="any items">
+<div class="box u-fill-view u-flex-top">
+
+    <!-- Table to display folders -->
+    <div class="any items u-text-center">
+        <h2>Folders</h2>
         <table align="center">
             <thead>
                 <th>Index</th>
@@ -13,21 +16,47 @@
             </thead>
             <tbody>
                 {{#each data}}
-                    <tr>
-                        <td>{{add @index 1 }}</td>
-                        <td><a href="/gateway/getChildren/{{_id}}">{{name}}</td>
-                        <td>
-                            {{#if (compare type "===" "Text") }}
-                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                            {{else if ( or (compare type "===" "Section") (compare type "===" "Chapter") ) }}
+                    {{#if ( and (compare type "!==" "Problem" ) ( compare type "!==" "Text") ) }}
+                        <tr>
+                            <td>{{add @index 1 }}</td>
+                            <td><a href="/gateway/getChildren/{{_id}}">{{name}}</td>
+                            <td>
                                 <i class="fa fa-folder-o" aria-hidden="true"></i>
-                            {{else}}
-                                <i class="fa fa-link" aria-hidden="true"></i>
-                            {{/if}}
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    {{/if}}
                 {{/each}}
             </tbody>
         </table>
     </div>
+
+    <!-- Table to display problems and text -->
+    <div class="any items u-text-center">
+        <h2>Problems/Texts</h2>
+        <table align="center">
+            <thead>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Type</th>
+            </thead>
+            <tbody>
+                {{#each data}}
+                    {{#if ( or (compare type "===" "Problem" ) ( compare type "===" "Text") ) }}
+                        <tr>
+                            <td>{{add @index 1 }}</td>
+                            <td><a href="/gateway/getChildren/{{_id}}">{{name}}</td>
+                            <td>
+                                {{#if (compare type "===" "Text") }}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                {{else}}
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                {{/if}}
+                            </td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
 </div>

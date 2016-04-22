@@ -18,11 +18,22 @@
             parentId: parentID
         }).sort({
             ind: 1
-        }).exec(function(err, data) {
+        }).exec(function(err, data ) {
             if (err) next(err);
 
-            return world.myRender(req, res, "gateway/gateway", {
-                data: data
+            Gate.findOne ( {
+                _id: parentID
+            }).exec ( function ( err, root ){
+                if ( err ) next ( err );
+
+                root = root || {
+                    parentId: '000000000000000000000000'
+                };
+
+                return world.myRender(req, res, "gateway/gateway", {
+                    root: root,
+                    data: data
+                });
             });
         });
     });

@@ -47,17 +47,17 @@ Header and Footer
 .navbar li {
     padding-left: 2.5rem;
 }
-.navbar a {
+
+a {
     text-decoration: none;
 }
-.navbar a:hover {
+a:hover {
     text-decoration: underline;
 }
 
 hr {
     margin-bottom: 1rem;
 }
-
 
 /**
 Potential Skeleton Upgrades

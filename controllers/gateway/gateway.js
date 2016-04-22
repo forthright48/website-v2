@@ -22,7 +22,7 @@
         }).exec(function(err, data ) {
             if (err) next(err);
 
-            ///We also need the parentID document to create "Go Up" button            
+            ///We also need the parentID document to create "Go Up" button
             Gate.findOne ( {
                 _id: parentID
             }).exec ( function ( err, root ){
@@ -30,6 +30,7 @@
 
                 ///What if we are dealing with root directory that has no document
                 root = root || {
+                    name: 'root',
                     parentId: '000000000000000000000000'
                 };
 

@@ -1,10 +1,12 @@
 <div class="box u-fill-view">
-    <div class="any item u-text-center">
-        <a href="/gateway/getChildren/{{data.parentId}}"><i class="fa fa-level-up" aria-hidden="true"></i> Go Up</a>
-        <h1>{{data.name}}</h1>
+    <div class="any item">
+        <div class="u-text-center">
+            <a href="/gateway/getChildren/{{data.parentId}}"><i class="fa fa-level-up" aria-hidden="true"></i> Go Up</a>
 
+        </div>
         <div>
-            {{data.body}}
+            <h1>{{data.name}}</h1>
+            {{{data.body}}}
         </div>
     </div>
 </div>

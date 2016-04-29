@@ -4,6 +4,7 @@
     var world = require("forthright48/world");
     var path = require('path');
     var Gate = require(path.join(world.root, "/models/gateway/gateway")).model;
+    var marked = require("marked");
 
     var router = express.Router();
 
@@ -63,8 +64,12 @@
         }).exec ( function ( err, data ) {
             if ( err ) return next ( err );
 
-            return world.myRender( req, res, "gateway/read", {
-                data: data
+            marked ( data.body, function ( err, content ) {
+                if ( err ) return next ( err );
+                data.body = content;
+                return world.myRender( req, res, "gateway/read", {
+                    data: data
+                });
             });
         });
     }

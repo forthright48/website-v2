@@ -68,6 +68,7 @@
             //Sucessfully logged in. Create Session
             req.session.username = req.body.username;
             req.session.isLoggedIn = true;
+            req.session.status = user.status;
 
             return world.myRender ( req, res, "success", {
                 title: "Successfully logged In",

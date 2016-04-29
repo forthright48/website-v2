@@ -14,6 +14,7 @@
 
     router.get("/getChildren/:parentID", getChildren );
     router.get("/read/:ID", read );
+    router.get("/hint/:ID", hint );
 
     module.exports = {
         addRouter: function(app) {
@@ -65,6 +66,24 @@
             if ( err ) return next ( err );
 
             marked ( data.body, function ( err, content ) {
+                if ( err ) return next ( err );
+                data.body = content;
+                return world.myRender( req, res, "gateway/read", {
+                    data: data
+                });
+            });
+        });
+    }
+
+    function hint ( req, res, next ) {
+        var ID = req.params.ID;
+
+        Gate.findOne ({
+            _id: ID
+        }).exec ( function ( err, data ) {
+            if ( err ) return next ( err );
+
+            marked ( data.hint, function ( err, content ) {
                 if ( err ) return next ( err );
                 data.body = content;
                 return world.myRender( req, res, "gateway/read", {

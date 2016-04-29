@@ -13,12 +13,17 @@ App Root: /problem-creation
     var Psetting = require ( path.join ( world.root, "/models/psetting/psetting.js" ) ).model;
 
     var router = express.Router();
+    var adminRouter = express.Router();
 
     router.get ( "/", renderRootView);
+
+    adminRouter.get ( "/insert", getInsert );
+    adminRouter.post ( "/insert", postInsert );
 
     module.exports = {
         addRouter: function ( app ) {
             app.use ( '/problem-creation', router );
+            app.use ( "/admin/problem-creation", adminRouter );
         }
     };
 
@@ -34,6 +39,30 @@ App Root: /problem-creation
             return world.myRender ( req, res, "problem-creation/problem-creation", {
                 data: data
             });
+        });
+    }
+
+    /*******************************************
+    Admin Router
+    *******************************************/
+    function getInsert( req, res ) {
+        return world.myRender ( req, res, "problem-creation/insert" );
+    }
+
+    function postInsert (req, res ) {
+        // TODO: Validate req.body
+
+        var problem = new Psetting ( {
+            index: req.body.index,
+            name: req.body.name,
+            usedIn: req.body.usedIn,
+            link: req.body.link
+        });
+
+        problem.save( function ( err ) {
+            if ( err ) return next(err);
+
+            return world.myRender ( req, res, "success", { title: "Insertion Complete" } );
         });
     }
 

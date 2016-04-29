@@ -1,3 +1,12 @@
+<!-- Show Insert button for admin -->
+{{#if adminMode}}
+    <div class="box">
+        <div class="any items u-text-center">
+            <a class="button" href="/admin/problem-creation/insert">Insert</a>
+        </div>
+    </div>
+{{/if}}
+
 <div class="box">
     <div class="twelve items">
         <table align="center" class="u-full-width">
@@ -13,7 +22,7 @@
                     <tr>
                         <td>{{index}}</td><td>{{name}}</td><td> <a href="{{link}}">{{usedIn}}</a></td>
                         {{#if ../adminMode}}
-                            <td>Edit</td>
+                            <td><a href="/admin/problem-creation/edit?_id={{_id}}">Edit</a></td>
                         {{/if}}
                     </tr>
                 {{/each}}

@@ -3,11 +3,18 @@
         <table align="center" class="u-full-width">
             <thead>
                 <th>Index</th><th>Name</th><th>Used In</th>
+
+                {{#if adminMode}}
+                    <th>Admin</th>
+                {{/if}}
             </thead>
             <tbody>
                 {{#each data}}
                     <tr>
-                        <td>{{index}}</td><td>{{name}}</td><td> <a href="{{link}}">{{usedIn}} </a> </td>
+                        <td>{{index}}</td><td>{{name}}</td><td> <a href="{{link}}">{{usedIn}}</a></td>
+                        {{#if ../adminMode}}
+                            <td>Edit</td>
+                        {{/if}}
                     </tr>
                 {{/each}}
             </tbody>

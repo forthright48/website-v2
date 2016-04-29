@@ -11,7 +11,20 @@
         res.redirect("/gateway/getChildren/000000000000000000000000");
     });
 
-    router.get("/getChildren/:parentID", function(req, res, next) {
+    router.get("/getChildren/:parentID", getChildren );
+    router.get("/read/:ID", read );
+
+    module.exports = {
+        addRouter: function(app) {
+            app.use("/gateway", router);
+        }
+    };
+
+    /*******************************************
+    Implementation
+    *******************************************/
+
+    function getChildren (req, res, next) {
         var parentID = req.params.parentID;
 
         ///Find all the documents whose parentId equals to parentID
@@ -20,7 +33,7 @@
         }).sort({
             ind: 1
         }).exec(function(err, data ) {
-            if (err) next(err);
+            if (err) return next(err);
 
             ///We also need the parentID document to create "Go Up" button
             Gate.findOne ( {
@@ -40,12 +53,19 @@
                 });
             });
         });
-    });
+    }
 
-    module.exports = {
-        addRouter: function(app) {
-            app.use("/gateway", router);
-        }
-    };
+    function read ( req, res, next ) {
+        var ID = req.params.ID;
 
+        Gate.findOne ({
+            _id: ID
+        }).exec ( function ( err, data ) {
+            if ( err ) return next ( err );
+
+            return world.myRender( req, res, "gateway/read", {
+                data: data
+            });
+        });
+    }
 }());

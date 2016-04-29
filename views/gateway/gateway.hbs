@@ -6,7 +6,7 @@
 </div>
 <div class="box u-fill-view u-flex-top">
 
-    <!-- Table to display folders -->
+    <!-- Table to display content of folders -->
     <div class="any items u-text-center">
         <table align="center" class="u-full-width">
             <thead>
@@ -29,7 +29,7 @@
                             <td>{{add @index 1 }}</td>
                             <td>{{name}}</td>
                             <td><i class="fa fa-file-text-o" aria-hidden="true"></i></td>
-                            <td>Read</td>
+                            <td> <a href="/gateway/read/{{_id}}"> Read </a> </td>
                         </tr>
                     {{else if (compare type "===" "Problem" )}}
                         <tr>

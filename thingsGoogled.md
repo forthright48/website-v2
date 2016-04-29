@@ -14,3 +14,6 @@ How to create a global object wrapped in nodejs
 
 6. [Convert Mongoose docs to json](http://stackoverflow.com/questions/9952649/convert-mongoose-docs-to-json)
 Can't send mongoose doc directly to view. Must use JSON.stringify() on it.
+
+7. [How to load document with a custom _id by Mongoose?](http://stackoverflow.com/questions/20895255/how-to-load-document-with-a-custom-id-by-mongoose)  
+To set a custom id in mongoose, set _id to mixed.

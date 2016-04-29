@@ -35,13 +35,26 @@
     /*DB*/
     require ( "./models/db.js").addSession(app);
 
+    /*Authentication*/
+    app.get ( "/admin/*", function(req,res,next){
+        if ( req && req.session ) {
+            if ( req.session.status === 'root' ) return next();
+        }
+        return world.handleError ( req, res, "Access Denied!" );
+    });
 
+    /*Home*/
     app.get("/", function(req, res) {
         return world.myRender ( req, res, "home" );
     });
 
+    /*Problem Creation*/
     require('./controllers/problem-creation/problem-creation.js').addRouter(app);
+
+    /*User and Admin*/
     require('./controllers/users/login.js').addRouter(app);
+    require('./controllers/users/admin.js').addRouter(app);
+    
     require('./controllers/gateway/gateway.js').addRouter(app);
 
     app.listen(app.get("port"), function() {
@@ -49,7 +62,7 @@
     });
 
     app.get('/*', function createError(req, res, next) {
-        return world.handleError ( res, "404 Page Not Found" );
+        return world.handleError ( req, res, "404 Page Not Found" );
     });
 
     app.use(errorhandler()); // Stack trace

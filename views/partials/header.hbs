@@ -19,6 +19,14 @@
 
             {{#if isLoggedIn}}
                 <li class="u-flex-pull-right">{{username}}</li>
+
+                <!-- Show admin toggle to super user -->
+                {{#if superUser}}
+                    {{#if adminMode}}<li><a href="/admin/toggleAdmin">Admin(1)</a></li>
+                    {{else}} <li><a href="/admin/toggleAdmin">Admin(0)</a></li>
+                    {{/if}}
+                {{/if}}
+
                 <li><a href="/users/logout">Logout</a></li>
             {{else}}
                 <li class="u-flex-pull-right"><a href="/users/login">Login/Register</a></li>

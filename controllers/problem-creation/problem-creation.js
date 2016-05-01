@@ -65,7 +65,7 @@ App Root: /problem-creation
         problem.save( function ( err ) {
             if ( err ) return next(err);
 
-            return world.myRender ( req, res, "success", { title: "Insertion Complete" } );
+            return res.redirect ( "/problem-creation" );
         });
     }
 
@@ -94,6 +94,11 @@ App Root: /problem-creation
 
     function deleteProblem ( req, res ) {
         var ID = req.query._id;
+
+        Psetting.findById(ID).remove( function ( err ) {
+            if ( err ) return next ( err );
+            return res.redirect ( "/problem-creation" );
+        });
     }
 
     function syncModel ( res, data ) {

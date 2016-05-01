@@ -109,9 +109,8 @@
     }
 
     function postInsert ( req, res ) {
-        console.log(req.body);
 
-        var content = syncModel ( {}, res.body );
+        var content = syncModel ( req.body );
 
         var newItem = new Gate( content );
 
@@ -122,7 +121,8 @@
         });
     }
 
-    function syncModel ( res, data ) {
+    function syncModel ( data ) {
+        var res = {};
         res.type = data.type;
         res.parentId = data.parentId;
         res.ind = data.ind;
@@ -134,5 +134,7 @@
         res.pid = data.pid;
         res.link = data.link;
         res.hint = data.hint;
+
+        return res;
     }
 }());

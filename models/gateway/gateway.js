@@ -8,11 +8,12 @@
         ind: Number, ///To reorder items inside same folder
         type: String, ///Folder vs item
         name: String,
+
         body: String, /// Contains text body
         platform: String,
         pid: String,
         link: String, /// Link for problem or text
-        hint: String
+        hint: String, /// Shoud be removed slowly
     });
 
     var Gate = mongoose.model("Gateway", schema );

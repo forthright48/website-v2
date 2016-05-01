@@ -19,9 +19,9 @@ App Root: /problem-creation
 
     adminRouter.get ( "/insert", getInsert );
     adminRouter.post( "/insert", postInsert );
-    adminRouter.get ( "/edit", getEdit );           ///Query _id
-    adminRouter.post( "/edit", postEdit );          ///Query _id
-    adminRouter.post( "/delete", deleteProblem );   ///Query _id
+    adminRouter.get ( "/edit/:ID", getEdit );
+    adminRouter.post( "/edit/:ID", postEdit );
+    adminRouter.post( "/delete/:ID", deleteProblem );
 
     module.exports = {
         addRouter: function ( app ) {
@@ -70,7 +70,7 @@ App Root: /problem-creation
     }
 
     function getEdit ( req, res ) {
-        var ID = req.query._id;
+        var ID = req.params.ID;
         Psetting.findById ( ID, function( err, data ){
             if ( err ) return next ( err );
             return world.myRender ( req, res, "problem-creation/edit-problem", data );
@@ -78,7 +78,7 @@ App Root: /problem-creation
     }
 
     function postEdit ( req, res ) {
-        var ID = req.query._id;
+        var ID = req.params.ID;
 
         Psetting.findById ( ID, function ( err, data ) {
             if ( err ) return next ( err );
@@ -93,7 +93,7 @@ App Root: /problem-creation
     }
 
     function deleteProblem ( req, res ) {
-        var ID = req.query._id;
+        var ID = req.params.ID;
 
         Psetting.findById(ID).remove( function ( err ) {
             if ( err ) return next ( err );

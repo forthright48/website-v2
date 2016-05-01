@@ -7,6 +7,7 @@
     var marked = require("marked");
 
     var router = express.Router();
+    var adminRouter = express.Router();
 
     router.get("/", function(req, res) {
         res.redirect("/gateway/getChildren/000000000000000000000000");
@@ -19,6 +20,7 @@
     module.exports = {
         addRouter: function(app) {
             app.use("/gateway", router);
+            app.use("/admin/gateway", adminRouter );
         }
     };
 

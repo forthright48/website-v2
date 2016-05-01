@@ -29,10 +29,12 @@
 
             <div class="box u-flex-top">
                 <div class="any items u-text-center">
-                        <input class="u-full-width" type="submit" formmethod="post" formaction="/admin/problem-creation/edit?_id={{_id}}" value="Update">
+                        <input class="u-full-width" type="submit" formmethod="post" formaction="/admin/problem-creation/edit/{{_id}}" value="Update">
                 </div>
+
+                <!-- TODO: Confirm deletion -->
                 <div class="any items u-text-center">
-                        <button class="u-full-width" type="submit" name="button" formmethod="post" formaction="/admin/problem-creation/delete?_id={{_id}}"><i class="fa fa-trash-o"></i>Delete</button>
+                        <button class="u-full-width" type="submit" name="button" formmethod="post" formaction="/admin/problem-creation/delete/{{_id}}"><i class="fa fa-trash-o"></i>Delete</button>
                 </div>
             </div>
         </form>

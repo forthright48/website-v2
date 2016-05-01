@@ -17,3 +17,7 @@ Can't send mongoose doc directly to view. Must use JSON.stringify() on it.
 
 7. [How to load document with a custom _id by Mongoose?](http://stackoverflow.com/questions/20895255/how-to-load-document-with-a-custom-id-by-mongoose)  
 To set a custom id in mongoose, set _id to mixed.
+
+8. [How to remove empty fields from mongodb doc](http://stackoverflow.com/questions/18606323/mongodb-empty-string-value-vs-null-value)
+
+9. [Null and empty string aren't the same](http://stackoverflow.com/questions/16620354/difference-between-null-and-empty-string)

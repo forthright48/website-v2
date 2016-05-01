@@ -22,11 +22,11 @@
             <div class="box">
                 <div class="any items">
                     <label for="ind">Index:</label>
-                    <input class="u-full-width" type="number" id="ind" name="ind"  required>
+                    <input class="u-full-width" type="number" id="ind" name="ind" value="{{ind}}" required>
                 </div>
                 <div class="any items">
                     <label for="name">Name:</label>
-                    <input class="u-full-width" type="text" id="name" name="name" required>
+                    <input class="u-full-width" type="text" id="name" name="name" value="{{name}}" required>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="box">
                 <div class="any items">
                     <label for="body">Body:</label>
-                    <textarea class="u-full-width" id="body" name="body"></textarea>
+                    <textarea class="u-full-width" id="body" name="body" value="{{body}}"></textarea>
                 </div>
             </div>
 
@@ -52,26 +52,29 @@
                 </div>
                 <div class="any items">
                     <label for="pid">Problem ID:</label>
-                    <input class="u-full-width" type="text" id="pid" name="pid">
+                    <input class="u-full-width" type="text" id="pid" name="pid" value="{{pid}}">
                 </div>
             </div>
             <div class="box">
                 <div class="any items">
                     <label for="link">Problem ID:</label>
-                    <input class="u-full-width" type="text" id="link" name="link">
+                    <input class="u-full-width" type="text" id="link" name="link" value="{{link}}">
                 </div>
             </div>
 
             <div class="box">
                 <div class="any items">
                     <label for="hint">Body:</label>
-                    <textarea class="u-full-width" id="hint" name="hint"></textarea>
+                    <textarea class="u-full-width" id="hint" name="hint" value="{{hint}}"></textarea>
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box u-flex-top">
                 <div class="any items u-text-center">
-                    <input type="submit" formmethod="post" formaction="/admin/gateway/insert" value="Insert">
+                    <input class="u-full-width" type="submit" formmethod="post" formaction="/admin/gateway/edit/{{_id}}" value="Update">
+                </div>
+                <div class="any items u-text-center">
+                    <button class="u-full-width" type="submit" name="button" formmethod="post" formaction="/admin/gateway/delete/{{_id}}"><i class="fa fa-trash-o"></i>Delete</button>
                 </div>
             </div>
         </form>

@@ -18,6 +18,7 @@
     router.get("/hint/:ID", hint );
 
     adminRouter.get( "/insert/:parentID", getInsert );
+    adminRouter.post( "/insert", postInsert );
 
     module.exports = {
         addRouter: function(app) {
@@ -105,5 +106,33 @@
     function getInsert ( req, res ) {
         var parentID = req.params.parentID;
         return world.myRender ( req, res, "gateway/insert", { parentID: parentID } );
+    }
+
+    function postInsert ( req, res ) {
+        console.log(req.body);
+
+        var content = syncModel ( {}, res.body );
+
+        var newItem = new Gate( content );
+
+        newItem.save ( function ( err, data ) {
+            if ( err ) return next ( err );
+
+            res.redirect ( "/gateway/getChildren/" + data.parentId );
+        });
+    }
+
+    function syncModel ( res, data ) {
+        res.type = data.type;
+        res.parentId = data.parentId;
+        res.ind = data.ind;
+        res.name = data.name;
+
+        res.body = data.body;
+
+        res.platform = data.platform;
+        res.pid = data.pid;
+        res.link = data.link;
+        res.hint = data.hint;
     }
 }());

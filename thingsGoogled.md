@@ -21,3 +21,5 @@ To set a custom id in mongoose, set _id to mixed.
 8. [How to remove empty fields from mongodb doc](http://stackoverflow.com/questions/18606323/mongodb-empty-string-value-vs-null-value)
 
 9. [Null and empty string aren't the same](http://stackoverflow.com/questions/16620354/difference-between-null-and-empty-string)
+
+10. [Select a blank as default option in form](http://stackoverflow.com/questions/8605516/default-select-option-as-blank)

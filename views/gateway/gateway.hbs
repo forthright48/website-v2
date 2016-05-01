@@ -1,3 +1,11 @@
+{{#if adminMode }}
+    <div class="box">
+        <div class="any items u-text-center">
+            <a href="/admin/gateway/insert/{{root._id}}" class='button'>Insert</a>
+        </div>
+    </div>
+{{/if}}
+
 <div class="box">
     <div class="any items u-text-center">
         <a href="/gateway/getChildren/{{root.parentId}}"><i class="fa fa-level-up" aria-hidden="true"></i> Go Up</a>

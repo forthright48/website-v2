@@ -17,6 +17,8 @@
     router.get("/read/:ID", read );
     router.get("/hint/:ID", hint );
 
+    adminRouter.get( "/insert/:parentID", getInsert );
+
     module.exports = {
         addRouter: function(app) {
             app.use("/gateway", router);
@@ -48,7 +50,8 @@
                 ///What if we are dealing with root directory that has no document
                 root = root || {
                     name: 'root',
-                    parentId: '000000000000000000000000'
+                    parentId: '000000000000000000000000',
+                    _id: parentID
                 };
 
                 return world.myRender(req, res, "gateway/gateway", {
@@ -93,5 +96,14 @@
                 });
             });
         });
+    }
+
+    /*******************************************
+    Admin Router
+    *******************************************/
+
+    function getInsert ( req, res ) {
+        var parentID = req.params.parentID;
+        return world.myRender ( req, res, "gateway/insert", { parentID: parentID } );
     }
 }());

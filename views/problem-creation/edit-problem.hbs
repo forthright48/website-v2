@@ -1,0 +1,40 @@
+<div class="box u-fill-view">
+    <div class="any items">
+        <form>
+            <div class="box">
+                <div class="any items">
+                        <label for="index">Index:</label>
+                        <input class="u-full-width" type="number" id="index" name="index" value="{{index}}">
+                </div>
+                <div class="any items">
+                        <label for="usedIn">Used In:</label>
+                        <select class="u-full-width" id="usedIn" name="usedIn">
+                            <option value="HackerRank">HackerRank</option>
+                            <option value="ProgKriya">ProgKriya</option>
+                            <option value="SPOJ">SPOJ</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="any items">
+                        <label for="name">Name:</label>
+                        <input class="u-full-width" type="text" id="name" name="name" value="{{name}}">
+                </div>
+                <div class="any items">
+                        <label for="link">Link:</label>
+                        <input class="u-full-width" type="text" id="link" name="link" value="{{link}}">
+                </div>
+            </div>
+
+            <div class="box u-flex-top">
+                <div class="any items u-text-center">
+                        <input class="u-full-width" type="submit" formmethod="post" formaction="/admin/problem-creation/edit?_id={{_id}}" value="Update">
+                </div>
+                <div class="any items u-text-center">
+                        <button class="u-full-width" type="submit" name="button" formmethod="post" formaction="/admin/problem-creation/delete?_id={{_id}}"><i class="fa fa-trash-o"></i>Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

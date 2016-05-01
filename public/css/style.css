@@ -59,6 +59,15 @@ hr {
     margin-bottom: 1rem;
 }
 
+.danger {
+    background-color: tomato;
+    color: white;
+}
+
+.debug {
+    border: 1px solid red;
+}
+
 /**
 Potential Skeleton Upgrades
 **/

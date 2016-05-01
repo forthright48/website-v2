@@ -18,7 +18,10 @@ App Root: /problem-creation
     router.get ( "/", renderRootView);
 
     adminRouter.get ( "/insert", getInsert );
-    adminRouter.post ( "/insert", postInsert );
+    adminRouter.post( "/insert", postInsert );
+    adminRouter.get ( "/edit", getEdit );           ///Query _id
+    adminRouter.post( "/edit", postEdit );          ///Query _id
+    adminRouter.post( "/delete", deleteProblem );   ///Query _id
 
     module.exports = {
         addRouter: function ( app ) {
@@ -46,7 +49,7 @@ App Root: /problem-creation
     Admin Router
     *******************************************/
     function getInsert( req, res ) {
-        return world.myRender ( req, res, "problem-creation/insert" );
+        return world.myRender ( req, res, "problem-creation/insert-problem" );
     }
 
     function postInsert (req, res ) {
@@ -64,6 +67,42 @@ App Root: /problem-creation
 
             return world.myRender ( req, res, "success", { title: "Insertion Complete" } );
         });
+    }
+
+    function getEdit ( req, res ) {
+        var ID = req.query._id;
+        Psetting.findById ( ID, function( err, data ){
+            if ( err ) return next ( err );
+            return world.myRender ( req, res, "problem-creation/edit-problem", data );
+        });
+    }
+
+    function postEdit ( req, res ) {
+        var ID = req.query._id;
+
+        Psetting.findById ( ID, function ( err, data ) {
+            if ( err ) return next ( err );
+
+            syncModel ( data, req.body );
+
+            data.save ( function ( err ) {
+                if ( err ) return next ( err );
+                return res.redirect ( "/problem-creation" );
+            });
+        });
+    }
+
+    function deleteProblem ( req, res ) {
+        var ID = req.query._id;
+    }
+
+    function syncModel ( res, data ) {
+        res.index = data.index;
+        res.name = data.name;
+        res.usedIn = data.usedIn;
+        res.link = data.link;
+
+        return res;
     }
 
 }());

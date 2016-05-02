@@ -39,7 +39,7 @@
             password: req.body.password
         }, function ( err, user ) {
             if ( err ) {
-                return world.handleError ( res, "Registration problem", err );
+                return world.handleError ( req, res, "Registration problem", err );
             }
 
             return world.myRender ( req, res, "success", {

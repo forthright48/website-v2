@@ -23,3 +23,5 @@ To set a custom id in mongoose, set _id to mixed.
 9. [Null and empty string aren't the same](http://stackoverflow.com/questions/16620354/difference-between-null-and-empty-string)
 
 10. [Select a blank as default option in form](http://stackoverflow.com/questions/8605516/default-select-option-as-blank)
+
+11. [Read file in nodejs](https://docs.nodejitsu.com/articles/file-system/how-to-read-files-in-nodejs)

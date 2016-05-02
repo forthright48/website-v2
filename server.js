@@ -6,7 +6,7 @@
     var path = require("path");
     var hbs = require("hbs");
     var mongoose = require("mongoose");
-    var secret = process.env.SECRET_TOKEN || world.secret.secret; ///Secret object
+    var secret = world.secret.secret; ///Secret object
     var bodyParser = require('body-parser');
     var errorhandler = require('errorhandler');
 

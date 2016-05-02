@@ -21,7 +21,7 @@
         console.log(err);
     });
 
-    mongoose.connect(process.env.MONGOLAB_URI || world.secret.db);
+    mongoose.connect(world.secret.db);
 
     module.exports = {
 

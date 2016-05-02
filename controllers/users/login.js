@@ -29,6 +29,8 @@
 
     // Create New User
     function register( req, res ) {
+        return world.handleError ( req, res, "Nice Try. But nope." );
+
         // TODO: Validate unique username and send notification accordingly
         // TODO: Encrypt password
 
@@ -55,14 +57,14 @@
 
         User.findOne({ username: req.body.username }).exec( function ( err, user ){
             if ( err ) {
-                return world.handleError ( res, "Login problem", err );
+                return world.handleError ( req, res, "Login problem", err );
             }
             if ( !user ) {
-                return world.handleError ( res, "No Such User" );
+                return world.handleError ( req, res, "No Such User" );
             }
 
             if ( req.body.password !== user.password ) {
-                return world.handleError ( res, "Password doesn't match" );
+                return world.handleError ( req, res, "Password doesn't match" );
             }
 
             //Sucessfully logged in. Create Session

@@ -58,7 +58,7 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 
 # Probability Theory
 
-1. [Bayes' Theorem](bayesTheorem.md)
+1. [Bayes' Theorem](./notes/bayesTheorem.md)
 
 # String
 

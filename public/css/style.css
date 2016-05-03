@@ -2,8 +2,11 @@ hr {
     margin: 0;
 }
 
-html, body, .container{
+html, body{
     height: 100%;
+}
+.container {
+    min-height: 100%;
 }
 
 body {

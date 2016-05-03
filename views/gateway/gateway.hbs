@@ -40,7 +40,7 @@
                         <td>{{add @index 1 }}</td>
                         <td>{{platform}} {{pid}} - {{name}}</td>
                         <td><i class="fa fa-link" aria-hidden="true"></i></td>
-                        <td> <a target="_blank" href="{{link}}">Solve</a> | {{#if hint}} <a href="/gateway/hint/{{_id}}">Hints</a>{{/if}} </td>
+                        <td> <a target="_blank" href="{{link}}">Solve</a> {{#if hint}} | <a href="/gateway/hint/{{_id}}">Hints</a>{{/if}} </td>
                     {{/if}}
 
                     {{#if ../adminMode}}

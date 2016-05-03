@@ -29,33 +29,38 @@
 
     // Create New User
     function register( req, res ) {
-        return world.handleError ( req, res, "Nice Try. But nope." );
+        // return world.handleError ( req, res, "Nice Try. But nope." );
 
         // TODO: Validate unique username and send notification accordingly
-        // TODO: Encrypt password
+        var username = req.body.username;
+        var password = req.body.password;
 
-        User.create ({
-            username: req.body.username,
-            password: req.body.password
-        }, function ( err, user ) {
-            if ( err ) {
-                return world.handleError ( req, res, "Registration problem", err );
-            }
-
-            return world.myRender ( req, res, "success", {
-                title: "User created",
-                data: {
-                    username: req.body.username
+        bcrypt.hash ( password, 10, function ( err, hash ) {
+            User.create ({
+                username: username,
+                password: hash
+            }, function ( err, user ) {
+                if ( err ) {
+                    return world.handleError ( req, res, "Registration problem", err );
                 }
-            });
 
+                return world.myRender ( req, res, "success", {
+                    title: "User created",
+                    data: {
+                        username: req.body.username
+                    }
+                });
+
+            });
         });
     }
 
     // Login User
-    function loginPost ( req, res ) {
+    function loginPost ( req, res, next ) {
+        var username = req.body.username;
+        var password = req.body.password;
 
-        User.findOne({ username: req.body.username }).exec( function ( err, user ){
+        User.findOne({ username: username }).exec( function ( err, user ){
             if ( err ) {
                 return world.handleError ( req, res, "Login problem", err );
             }
@@ -63,22 +68,24 @@
                 return world.handleError ( req, res, "No Such User" );
             }
 
-            if ( req.body.password !== user.password ) {
-                return world.handleError ( req, res, "Password doesn't match" );
-            }
+            bcrypt.compare ( password, user.password, function ( err, success ) {
+                if ( err ) return next ( err );
 
-            //Sucessfully logged in. Create Session
-            req.session.username = req.body.username;
-            req.session.isLoggedIn = true;
-            req.session.status = user.status;
+                if ( !success ) return world.handleError ( req, res, "Password doesn't match" );
 
-            return world.myRender ( req, res, "success", {
-                title: "Successfully logged In",
-                data: {
-                    username: req.session.username,
-                }
+                //Sucessfully logged in. Create Session
+                req.session.username = req.body.username;
+                req.session.isLoggedIn = true;
+                req.session.status = user.status;
+
+                return world.myRender ( req, res, "success", {
+                    title: "Successfully logged In",
+                    data: {
+                        username: req.session.username,
+                    }
+                });
+
             });
-
         });
     }
 

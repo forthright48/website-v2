@@ -26,11 +26,10 @@
         extended: true
     })); // support encoded bodies
 
-    /*HBS*/
-    app.set('view engine', 'hbs'); ///Support for handlebars rendering
+    /*Pug*/
+    app.set('view engine', 'pug'); ///Support for handlebars rendering
     app.set('views', __dirname + '/views');
-    hbs.registerPartials(__dirname + '/views/partials');
-    require("forthright48/hbs-helpers");
+    
 
     /*DB*/
     require ( "./models/db.js").addSession(app);

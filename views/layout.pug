@@ -1,0 +1,25 @@
+doctype 5
+html
+  head
+    title forthright48
+    block head
+        // Cool Icons
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css")
+
+        // MathJax
+        script(type="text/x-mathjax-config") MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} });
+        script(type="text/javascript", async, src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML")
+
+        link(rel="stylesheet", href="/css/normalize.css", media="screen", title="no title", charset="utf-8")
+        link(rel="stylesheet", href="/css/skeleton.css", media="screen", title="no title", charset="utf-8")
+        link(rel="stylesheet", href="/css/style.css", media="screen", title="no title", charset="utf-8")
+        link(rel="stylesheet", href="/css/markdown.css", media="screen", title="no title", charset="utf-8")
+
+        link(href="https://fonts.googleapis.com/css?family=Raleway", rel="stylesheet" type="text/css")
+  body
+    .container
+        block header
+
+        block content
+
+        block footer

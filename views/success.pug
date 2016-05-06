@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+    .box.u-fill-view
+        .twelve.items.u-text-center
+            h1= title
+            ul
+                each val, key in data
+                    li= key + ": " + val
+                    

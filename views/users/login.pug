@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block content
+
+    // TODO: Hints for filling form and validation
+    .box.u-fill-view
+        .any.items
+            form
+                .box
+                    .four.items.offset-by-four
+                        label(for="username") Username
+                        input.u-full-width(type="text", id="username", name="username" placeholder="letters and numbers only", requred, pattern="[a-zA-Z0-9]+")
+                .box
+                    .four.items.offset-by-four
+                        label(for="password") Password
+                        input.u-full-width(type="password", id="password", name="password", required)
+                .box
+                    .two.items.offset-by-four
+                        input.u-full-width(type="submit", formmethod="post", formaction="/users/login", value="Login")
+                    .two.items
+                        input.u-full-width(type="submit", formmethod="post", formaction="/users/register", value="Register")

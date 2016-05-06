@@ -1,0 +1,28 @@
+.box.header
+    .twelve.items.u-text-center
+        h1.u-inline forthright48
+        h5.u-inline /#{subtitle}
+
+.box.navbar
+    .any.items
+        ul
+            li #[a(href="/") Home]
+            li #[a(href="http://blog.forthright48.com") Blog]
+            li #[a(href="/problem-creation") Problem Creation]
+            li #[a(href="/gateway") Gateway]
+            li #[a(href="/cpps") CPPS]
+    .any.items
+        ul
+            if isLoggedIn
+                li.u-flex-pull-right= username
+
+                // Show admin toggle to super user
+                if superUser
+                    if adminMode
+                        li #[a(href="/admin/toggleAdmin") Admin(1)]
+                    else
+                        li #[a(href="/admin/toggleAdmin") Admin(0)]
+                li a(href="/users/logout") Logout
+            else
+                li.u-flex-pull-right #[a(href="/users/login") Login/Register]
+hr

@@ -106,14 +106,14 @@
     Admin Router
     *******************************************/
 
-    function getInsert(req, res) {
+    function getInsert(req, res, next) {
         var parentId = req.params.parentID;
         return world.myRender(req, res, "gateway/insert", {
             parentId: parentId
         });
     }
 
-    function postInsert(req, res) {
+    function postInsert(req, res, next) {
         var content = {};
         syncModel(content, req.body);
         var newItem = new Gate(content);
@@ -123,7 +123,7 @@
         });
     }
 
-    function getEditItem(req, res) {
+    function getEditItem(req, res, next) {
         var ID = req.params.ID;
         Gate.findById(ID, function(err, data) {
             if (err) return next(err);
@@ -131,7 +131,7 @@
         });
     }
 
-    function postEditItem(req, res) {
+    function postEditItem(req, res, next) {
         var ID = req.params.ID;
         Gate.findById(ID, function(err, data) {
             if (err) return next(err);
@@ -144,7 +144,7 @@
         });
     }
 
-    function deleteItem(req, res) {
+    function deleteItem(req, res, next) {
         var ID = req.params.ID;
         Gate.findById(ID, function ( err, data) {
             if ( err ) return next ( err );

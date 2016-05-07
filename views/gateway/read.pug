@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block content
+    .box.u-fill-view.u-flex-top
+        .any.item
+            .u-text-center
+                a(href="/gateway/getChildren/"+data.parentId)
+                    i.fa.fa-level-up(aria-hidden="true")
+                    span Go Up
+            .markdown-body
+                h1= data.name
+                span !{data.body}

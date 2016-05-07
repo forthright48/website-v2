@@ -4,15 +4,12 @@
     var world = require("forthright48/world");
     var express = require("express");
     var path = require("path");
-    var hbs = require("hbs");
     var mongoose = require("mongoose");
     var secret = world.secret.secret; ///Secret object
     var bodyParser = require('body-parser');
     var errorhandler = require('errorhandler');
 
-
     var app = express();
-
 
     /*******************************************
     Configuration
@@ -29,7 +26,7 @@
     /*Pug*/
     app.set('view engine', 'pug'); ///Support for handlebars rendering
     app.set('views', __dirname + '/views');
-    
+
 
     /*DB*/
     require ( "./models/db.js").addSession(app);

@@ -1,0 +1,26 @@
+extends ../layout.pug
+
+block content
+    // Show Insert button for admin
+    if adminMode
+        .box
+            .any.items.u-text-center
+                a.button(href="/admin/problem-creation/insert") Insert
+
+    .box
+        .twelve.items
+            table.u-full-width(align="center")
+                thead
+                    th Index
+                    th Name
+                    th Used In
+                    if adminMode
+                        th Admin
+                tbody
+                    each val in data
+                        tr
+                            td= val.index
+                            td= val.name
+                            td #[a(href=val.link) #{val.usedIn}]
+                            if adminMode
+                                td #[a(href="/admin/problem-creation/edit/" + val._id) Edit]

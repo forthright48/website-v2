@@ -1,0 +1,28 @@
+extends ../layout.pug
+
+block content
+    .box.u-fill-view
+        .any.items
+            form
+                .box
+                    .any.items
+                        label(for="index") Index:
+                        input.u-full-width(type="number", id="index", name="index" value="" )
+                    .any.items
+                        label(for="usedIn") Used In:
+                        select.u-full-width(id="usedIn", name="usedIn")
+                            option(value="Select a Value", disabled, selected) Select a Value
+                            option(value="HackerRank") HackerRank
+                            option(value="ProgKriya") ProgKriya
+                            option(value="SPOJ") SPOJ
+                .box
+                    .any.items
+                        label(for="name") Name:
+                        input.u-full-width(type="text", id="name", name="name", value="" )
+                    .any.items
+                        label(for="link") Link:
+                        input.u-full-width(type="text", id="link", name="link", value="" )
+
+                .box
+                    .any.items.u-text-center
+                        input(type="submit", formmethod="post", formaction="/admin/problem-creation/insert", value="Insert")

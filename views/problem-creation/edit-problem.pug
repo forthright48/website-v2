@@ -1,0 +1,30 @@
+extends ../layout.pug
+
+block content
+    .box.u-fill-view
+        .any.items
+            form
+                .box
+                    .any.items
+                        label(for="index") Index:
+                        input.u-full-width(type="number", id="index", name="index" value=index )
+                    .any.items
+                        label(for="usedIn") Used In:
+                        select.u-full-width(id="usedIn", name="usedIn")
+                            option(value="HackerRank", selected=usedIn==='HackerRank') HackerRank
+                            option(value="ProgKriya", selected=usedIn==='ProgKriya') ProgKriya
+                            option(value="SPOJ", selected=usedIn==='SPOJ') SPOJ
+                .box
+                    .any.items
+                        label(for="name") Name:
+                        input.u-full-width(type="text", id="name", name="name", value=name )
+                    .any.items
+                        label(for="link") Link:
+                        input.u-full-width(type="text", id="link", name="link", value=link )
+
+                .box.u-flex-top
+                    .any.items.u-text-center
+                        input.u-full-width(type="submit",formmethod="post",formaction="/admin/problem-creation/edit/"+_id,value="Update")
+                    .any.items.u-text-center
+                        button.u-full-width(type="submit",name="button",formmethod="post",formaction="/admin/problem-creation/delete/"+_id)
+                            i.fa.fa-trash-o Delete

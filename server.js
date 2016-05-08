@@ -58,6 +58,9 @@
     /*CPPS*/
     require('./controllers/cpps/cpps.js').addRouter(app);
 
+    /*Misc*/
+    require('./controllers/misc/dbdesign').addRouter(app);
+
     app.listen(app.get("port"), function() {
         console.log(`Server running at port ${ app.get("port") }`);
     });

@@ -6,6 +6,7 @@
     var schema = new mongoose.Schema({
         type: { type: String, set: removeNullOrBlank }, ///Folder vs item
         parentId: { type: mongoose.Schema.ObjectId, set : removeNullOrBlank },
+        ancestor: [mongoose.Schema.ObjectId],
         ind: { type: Number, set : removeNullOrBlank },///To reorder items inside same folder
         name: { type: String, set : removeNullOrBlank },
 

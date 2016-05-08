@@ -33,13 +33,14 @@ block content
                 h2 For Problem
                 .box
                     .any.items
-                        label(for="platform") Platform:
+                        label(for="platform") Platform: #{platform}
                         select.u-full-width(id="platform",name="platform")
                             option(selected=!platform, value="") Select a Platform
                             option(value="HR", selected=platform==="HR") HackerRank
                             option(value="LOJ", selected=platform==="LOJ") LightOJ
                             option(value="UVa", selected=platform==="UVa") UVa
                             option(value="SPOJ", selected=platform==="SPOJ") SPOJ
+                            option(value="Toph", selected=platform==="Toph") Toph
                     .any.items
                         label(for="pid") Problem ID:
                         input.u-full-width(type="text", id="pid", name="pid", value=pid)

@@ -9,7 +9,7 @@ block content
         .any.items.u-text-center
             a(href="/gateway/getChildren/"+root.parentId)
                 .fa.fa-level-up(aria-hidden="true")
-                Go Up
+                span Go Up
             h4 Gateway - #{root.name}
     .box.u-fill-view.u-flex-top
         // Table to display content of folders
@@ -20,7 +20,7 @@ block content
                     th Name
                     th Type
                     th Action
-
+                    th Done
                     if adminMode
                         th Admin
                 tbody
@@ -43,6 +43,18 @@ block content
                                     if val.hint
                                         span= " | "
                                         a(href="/gateway/hint/"+val._id) Hints
+
+                            if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
+                                if doneList.indexOf(val._id) >= 0
+                                    td
+                                        a(href="/user/remove-done-list/" + val._id+"?redirect="+root._id)
+                                            i.fa.fa-star
+                                else
+                                    td
+                                        a(href="/user/add-done-list/" + val._id+"?redirect="+root._id)
+                                            i.fa.fa-star-o
+                            else
+                                td ---
 
                             if adminMode
                                 td #[a(href="/admin/gateway/edit/"+val._id) Edit]

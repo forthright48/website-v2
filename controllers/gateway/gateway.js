@@ -4,6 +4,7 @@
     var world = require("forthright48/world");
     var path = require('path');
     var Gate = require(path.join(world.root, "/models/gateway/gateway")).model;
+    var User = require(path.join(world.root, "/models/users/users")).model;
     var marked = require("marked");
 
     var router = express.Router();
@@ -58,10 +59,25 @@
                     _id: parentID
                 };
 
-                return world.myRender(req, res, "gateway/gateway", {
-                    root: root,
-                    data: data
-                });
+                if ( req.session.isLoggedIn ) {
+                    User.findOne({
+                        username: req.session.username
+                    }).exec(function(err,user){
+                        if ( err ) return next ( err );
+                        return world.myRender(req, res, "gateway/gateway", {
+                            root: root,
+                            data: data,
+                            doneList: user.doneList
+                        });
+                    });
+                }
+                else {
+                    return world.myRender(req, res, "gateway/gateway", {
+                        root: root,
+                        data: data,
+                        doneList: []
+                    });
+                }
             });
         });
     }

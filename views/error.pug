@@ -1,6 +1,7 @@
-{{!-- Context: error --}}
+extends layout.pug
 
-.box.u-fill-view
-    .twelve.items.u-text-center
-        h1 Error: #{error}
-        p #{realError}
+block content
+    .box.u-fill-view
+        .twelve.items.u-text-center
+            h1 Error: #{error}
+            p #{realError}

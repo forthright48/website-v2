@@ -21,6 +21,8 @@
             if ( err ) return next ( err );
             marked ( data, function ( err, content ) {
                 if ( err ) return next ( err );
+
+                // TODO: Delimit backslash inside content
                 return world.myRender( req, res, "cpps/cpps", { data: content } );
             });
         });

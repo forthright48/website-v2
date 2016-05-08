@@ -25,3 +25,5 @@ To set a custom id in mongoose, set _id to mixed.
 10. [Select a blank as default option in form](http://stackoverflow.com/questions/8605516/default-select-option-as-blank)
 
 11. [Read file in nodejs](https://docs.nodejitsu.com/articles/file-system/how-to-read-files-in-nodejs)
+
+12. [Asyc.js Library Use](http://www.sebastianseilund.com/nodejs-async-in-practice)

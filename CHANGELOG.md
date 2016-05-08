@@ -4,8 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [TODO]
 - Breadcrumb
-- Star mark to indicate which problem has been solved by user
+- Change tree structure to support done statistics.
 
 
-##[1.0.0] - 2016-4-8
+## [1.1.0] - 2016-4-8
+### Add
+- Star mark to indicated done.
+
+## [1.0.0] - 2016-4-8
 ### Initial Release

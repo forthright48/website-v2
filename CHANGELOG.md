@@ -4,12 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [TODO]
 - Breadcrumb
-- Change tree structure to support done statistics.
 
-
-## [1.1.0] - 2016-4-8
+## [1.1.0] - 2016-4-10
 ### Add
 - Star mark to indicated done.
+- Done statistics
+### Edit
+- Changed db tree structure to handle subtree query.
 
 ## [1.0.0] - 2016-4-8
 ### Initial Release

@@ -7,54 +7,55 @@ block content
                 a.button(href="/admin/gateway/insert/"+root._id) Insert
     .box
         .any.items.u-text-center
+            h4.u-inline Gateway - #{root.name} &nbsp
             a(href="/gateway/getChildren/"+root.parentId)
                 .fa.fa-level-up(aria-hidden="true")
                 span Go Up
-            h4 Gateway - #{root.name}
-    .box.u-fill-view.u-flex-top
-        // Table to display content of folders
-        .any.items.u-text-center
-            table.u-full-width(align="center")
-                thead
-                    th Index
-                    th Name
-                    th Type
-                    th Action
-                    th Done
-                    if adminMode
-                        th Admin
-                tbody
-                    each val, index in data
-                        tr
-                            td= index + 1
-                            if val.type !== "Problem" && val.type !== "Text"
-                                td= val.name
-                                td #[i.fa.fa-folder-o(aria-hidden="true") ]
-                                td #[a(href="/gateway/getChildren/"+val._id) Open]
-                            else if val.type === "Text"
-                                td= val.name
-                                td #[i.fa.fa-file-text-o(aria-hidden="true") ]
-                                td #[a(href="/gateway/read/"+val._id) Read]
-                            else if val.type === "Problem"
-                                td= val.platform + " " + val.pid + " - " + val.name
-                                td #[i.fa.fa-link(aria-hidden="true") ]
-                                td
-                                    a(target="_blank", href=val.link) Solve
-                                    if val.hint
-                                        span= " | "
-                                        a(href="/gateway/hint/"+val._id) Hints
-
-                            if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
-                                if doneList.indexOf(val._id) >= 0
+    .item.u-fill-view
+        .box
+            // Table to display content of folders
+            .any.items.u-text-center
+                table.u-full-width(align="center")
+                    thead
+                        th Index
+                        th Name
+                        th Type
+                        th Action
+                        th Done
+                        if adminMode
+                            th Admin
+                    tbody
+                        each val, index in data
+                            tr
+                                td= index + 1
+                                if val.type !== "Problem" && val.type !== "Text"
+                                    td= val.name
+                                    td #[i.fa.fa-folder-o(aria-hidden="true") ]
+                                    td #[a(href="/gateway/getChildren/"+val._id) Open]
+                                else if val.type === "Text"
+                                    td= val.name
+                                    td #[i.fa.fa-file-text-o(aria-hidden="true") ]
+                                    td #[a(href="/gateway/read/"+val._id) Read]
+                                else if val.type === "Problem"
+                                    td= val.platform + " " + val.pid + " - " + val.name
+                                    td #[i.fa.fa-link(aria-hidden="true") ]
                                     td
-                                        a(href="/user/remove-done-list/" + val._id+"?redirect="+root._id)
-                                            i.fa.fa-star
+                                        a(target="_blank", href=val.link) Solve
+                                        if val.hint
+                                            span= " | "
+                                            a(href="/gateway/hint/"+val._id) Hints
+
+                                if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
+                                    if doneList.indexOf(val._id) >= 0
+                                        td
+                                            a(href="/user/remove-done-list/" + val._id+"?redirect="+root._id)
+                                                i.fa.fa-star
+                                    else
+                                        td
+                                            a(href="/user/add-done-list/" + val._id+"?redirect="+root._id)
+                                                i.fa.fa-star-o
                                 else
-                                    td
-                                        a(href="/user/add-done-list/" + val._id+"?redirect="+root._id)
-                                            i.fa.fa-star-o
-                            else
-                                td ---
+                                    td ---
 
-                            if adminMode
-                                td #[a(href="/admin/gateway/edit/"+val._id) Edit]
+                                if adminMode
+                                    td #[a(href="/admin/gateway/edit/"+val._id) Edit]

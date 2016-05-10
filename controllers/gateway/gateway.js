@@ -37,24 +37,31 @@
     *******************************************/
 
     function getChildren(req, res, next) {
-        var parentID = req.params.parentID;
+        var node = req.params.parentID;
 
         async.parallel({
             data: function( callback ) {
                 ///Find all the documents whose parentId equals to parentID
-                Gate.find({parentId: parentID}).sort({ind: 1}).exec(function(err, data) {
+                Gate.find({parentId: node}).sort({ind: 1}).exec(function(err, data) {
                     if (err) return callback ( err );
                     return callback ( null, data );
                 });
             },
+            rootCount: function ( callback ) {
+                ///Total number of items in subtree of this node
+                Gate.count ( { ancestor: node, type: {$in: ["Problem", "Text"]} }, function ( err, rootCount ) {
+                    if ( err ) return callback ( err );
+                    return callback ( null, rootCount );
+                });
+            },
             root: function ( callback ) {
                 ///We also need the parentID document to create "Go Up" button
-                Gate.findOne({_id: parentID}).exec(function(err, root) {
+                Gate.findOne({_id: node}).exec(function(err, root) {
                     if (err) return callback ( err );
                     root = root || {
                         name: 'root',
                         parentId: '000000000000000000000000',
-                        _id: parentID
+                        _id: node
                     };
                     return callback ( null, root );
                 });
@@ -76,8 +83,9 @@
             if ( err ) return next ( err );
 
             return world.myRender(req, res, "gateway/gateway", {
-                root: coll.root,
                 data: coll.data,
+                rootCount: coll.rootCount,
+                root: coll.root,
                 doneList: coll.doneList
             });
         });

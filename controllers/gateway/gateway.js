@@ -6,6 +6,7 @@
     var Gate = require(path.join(world.root, "/models/gateway/gateway")).model;
     var User = require(path.join(world.root, "/models/users/users")).model;
     var marked = require("marked");
+    var async = require("async");
 
     var router = express.Router();
     var adminRouter = express.Router();
@@ -38,48 +39,49 @@
     function getChildren(req, res, next) {
         var parentID = req.params.parentID;
 
-        ///Find all the documents whose parentId equals to parentID
-        Gate.find({
-            parentId: parentID
-        }).sort({
-            ind: 1
-        }).exec(function(err, data) {
-            if (err) return next(err);
-
-            ///We also need the parentID document to create "Go Up" button
-            Gate.findOne({
-                _id: parentID
-            }).exec(function(err, root) {
-                if (err) next(err);
-
-                ///What if we are dealing with root directory that has no document
-                root = root || {
-                    name: 'root',
-                    parentId: '000000000000000000000000',
-                    _id: parentID
-                };
-
+        async.parallel({
+            data: function( callback ) {
+                ///Find all the documents whose parentId equals to parentID
+                Gate.find({parentId: parentID}).sort({ind: 1}).exec(function(err, data) {
+                    if (err) return callback ( err );
+                    return callback ( null, data );
+                });
+            },
+            root: function ( callback ) {
+                ///We also need the parentID document to create "Go Up" button
+                Gate.findOne({_id: parentID}).exec(function(err, root) {
+                    if (err) return callback ( err );
+                    root = root || {
+                        name: 'root',
+                        parentId: '000000000000000000000000',
+                        _id: parentID
+                    };
+                    return callback ( null, root );
+                });
+            },
+            doneList: function ( callback ) {
+                ///Get done list from user
                 if ( req.session.isLoggedIn ) {
-                    User.findOne({
-                        username: req.session.username
-                    }).exec(function(err,user){
-                        if ( err ) return next ( err );
-                        return world.myRender(req, res, "gateway/gateway", {
-                            root: root,
-                            data: data,
-                            doneList: user.doneList
-                        });
+                    User.findOne({ username: req.session.username}, function(err,user){
+                        if ( err ) return callback ( err );
+                        return callback ( null, user.doneList );
                     });
                 }
                 else {
-                    return world.myRender(req, res, "gateway/gateway", {
-                        root: root,
-                        data: data,
-                        doneList: []
-                    });
+                    return callback ( null, [] );
                 }
+            }
+        },function( err, coll ){
+            ///When all calls are complete, render the page
+            if ( err ) return next ( err );
+
+            return world.myRender(req, res, "gateway/gateway", {
+                root: coll.root,
+                data: coll.data,
+                doneList: coll.doneList
             });
         });
+
     }
 
     function read(req, res, next) {

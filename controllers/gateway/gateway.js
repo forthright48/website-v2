@@ -130,9 +130,15 @@
             doneList: function ( callback ) {
                 ///Get done list from user
                 if ( req.session.isLoggedIn ) {
-                    User.findOne({ username: req.session.username}, function(err,user){
+                    var userID = req.session.userID;
+                    Gate.find ({parentId: node, doneList: userID}).select("_id").exec( function(err,arr){
                         if ( err ) return callback ( err );
-                        return callback ( null, user.doneList );
+
+                        arr = arr.map ( function ( val ) {
+                            return val._id.toString();
+                        });
+
+                        return callback ( null, arr );
                     });
                 }
                 else {

@@ -50,10 +50,10 @@
     /*User and Admin*/
     require('./controllers/users/login.js').addRouter(app);
     require('./controllers/users/admin.js').addRouter(app);
-    require('./controllers/users/user.js').addRouter(app);
 
     /*Gateway*/
     require('./controllers/gateway/gateway.js').addRouter(app);
+    require('./controllers/gateway/doneStat.js').addRouter(app);
 
     /*CPPS*/
     require('./controllers/cpps/cpps.js').addRouter(app);

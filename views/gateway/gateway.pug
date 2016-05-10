@@ -48,13 +48,13 @@ block content
                                         a(href="/gateway/hint/"+val._id) Hints
 
                             if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
-                                if doneList.indexOf(val._id) >= 0
+                                if doneList.indexOf(val._id.toString()) >= 0
                                     td
-                                        a(href="/user/remove-done-list/" + val._id+"?redirect="+root._id)
+                                        a(href="/doneStat/remove-done-list/" + val._id+"?redirect="+root._id)
                                             i.fa.fa-star
                                 else
                                     td
-                                        a(href="/user/add-done-list/" + val._id+"?redirect="+root._id)
+                                        a(href="/doneStat/add-done-list/" + val._id+"?redirect="+root._id)
                                             i.fa.fa-star-o
                             else
                                 td ---

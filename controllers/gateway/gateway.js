@@ -39,26 +39,60 @@
     function getChildren(req, res, next) {
         var node = req.params.parentID;
 
+        ///Parallelly calculate many values required for page rendering
         async.parallel({
+            ///Grabs all children of node
             data: function( callback ) {
                 ///Find all the documents whose parentId equals to parentID
                 Gate.find({parentId: node}).sort({ind: 1}).exec(function(err, data) {
                     if (err) return callback ( err );
 
-                    ///For each child, find their count and set it on count field
-                    async.forEachOf( data, function ( value, key, boom ){
-                        if ( value.type === 'Problem' || value.type  === "Text" ) return boom ( null );
+                    ///Calculate totalCount and userCount parallely
+                    async.parallel([
+                        ///Calculate totalCount
+                        function ( ticktock ) {
+                            async.forEachOf( data, function ( value, key, boom ){
+                                if ( value.type === 'Problem' || value.type  === "Text" ) return boom ( null );
 
-                        var id = value._id;
+                                var id = value._id;
 
-                        ///Find count of this id
-                        Gate.count({ancestor:id,type: {$in: ["Problem", "Text"]} }, function(err,cnt){
-                            if ( err ) return boom ( err );
-                            value.totalCount = cnt;
-                            return boom ( null );
-                        });
+                                ///Find count of this id
+                                Gate.count({ancestor:id,type: {$in: ["Problem", "Text"]} }, function(err,cnt){
+                                    if ( err ) return boom ( err );
+                                    value.totalCount = cnt;
+                                    return boom ( null );
+                                });
 
-                    }, function ( err ){
+                            }, function ( err ){
+                                if ( err ) return ticktock ( err );
+                                return ticktock ( null );
+                            });
+                        }, function ( ticktock ) {
+                            var userID = req.session.userID;
+
+                            async.forEachOf( data, function ( value, key, boom ){
+                                if ( value.type === 'Problem' || value.type  === "Text" ) return boom ( null );
+                                var id = value._id;
+
+                                ///User not logged in
+                                if ( !userID ) {
+                                    value.userCount = "--";
+                                    return boom ( null );
+                                }
+
+                                ///Find count of items user solved
+                                Gate.count({ancestor:id,type: {$in: ["Problem", "Text"]}, doneList: userID },function(err,cnt){
+                                    if ( err ) return boom ( err );
+                                    value.userCount = cnt;
+                                    return boom ( null );
+                                });
+
+                            }, function ( err ){
+                                if ( err ) return ticktock ( err );
+                                return ticktock ( null );
+                            });
+                        }
+                    ],function(err){
                         if ( err ) return callback ( err );
                         return callback ( null, data );
                     });
@@ -69,6 +103,16 @@
                 Gate.count ( { ancestor: node, type: {$in: ["Problem", "Text"]} }, function ( err, rootCount ) {
                     if ( err ) return callback ( err );
                     return callback ( null, rootCount );
+                });
+            },
+            userCount: function ( callback ) {
+                var userID = req.session.userID;
+                if ( !userID ) return callback ( null, "--" );
+
+                ///Find number of items marked by user under this node
+                Gate.count ( { ancestor: node, type: {$in: ["Problem", "Text"]}, doneList: userID }, function ( err, userCount ) {
+                    if ( err ) return callback ( err );
+                    return callback ( null, userCount );
                 });
             },
             root: function ( callback ) {
@@ -99,9 +143,11 @@
             ///When all calls are complete, render the page
             if ( err ) return next ( err );
 
+            coll.root.totalCount = coll.rootCount;
+            coll.root.userCount = coll.userCount;
+
             return world.myRender(req, res, "gateway/gateway", {
                 data: coll.data,
-                rootCount: coll.rootCount,
                 root: coll.root,
                 doneList: coll.doneList
             });

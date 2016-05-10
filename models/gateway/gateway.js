@@ -15,7 +15,9 @@
         platform: { type: String, set : removeNullOrBlank },
         pid: { type: String, set : removeNullOrBlank },
         link: { type: String, set : removeNullOrBlank },/// Link for problem or text
-        hint: { type: String, set : removeNullOrBlank } /// Shoud be removed slowly
+        hint: { type: String, set : removeNullOrBlank }, /// Shoud be removed slowly
+
+        doneList: [mongoose.Schema.ObjectId] ///Stores the userID who solved the problem
     });
 
     var Gate = mongoose.model("Gateway", schema );

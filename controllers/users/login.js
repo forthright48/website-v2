@@ -74,6 +74,7 @@
                 if ( !success ) return world.handleError ( req, res, "Password doesn't match" );
 
                 //Sucessfully logged in. Create Session
+                req.session.userID = user._id;
                 req.session.username = req.body.username;
                 req.session.isLoggedIn = true;
                 req.session.status = user.status;

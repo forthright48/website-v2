@@ -11,8 +11,7 @@ block content
                 .fa.fa-level-up(aria-hidden="true")
                 span Go Up
             h4 Gateway - #{root.name}
-
-            span #{rootCount} Items under this folder
+            span #{root.userCount}/#{root.totalCount} Items under this folder
     .box.u-fill-view.u-flex-top
         // Table to display content of folders
         .any.items.u-text-center
@@ -33,7 +32,7 @@ block content
                                 td= val.name
                                 td
                                     i.fa.fa-folder-o(aria-hidden="true")
-                                    span &nbsp; #{val.userCount || "--" }/#{val.totalCount}
+                                    span &nbsp; #{val.userCount}/#{val.totalCount}
                                 td #[a(href="/gateway/getChildren/"+val._id) Open]
                             else if val.type === "Text"
                                 td= val.name

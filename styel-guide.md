@@ -12,4 +12,6 @@
 
 1. File names and folder names will be of form "a-b". Consistency is the key.
 
-1. Variable names will be of form "likeThisWithFirstLetterInLowerAlphabet".
+1. Variable names will be of form "likeThisWithFirstLetterInLowerAlphabet" - camel case.
+
+1. When looping through an array, use for(i=0,i<arr.length;i++) style. [This](http://stackoverflow.com/questions/3010840/loop-through-array-in-javascript)

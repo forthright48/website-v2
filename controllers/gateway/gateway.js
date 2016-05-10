@@ -164,9 +164,18 @@
             if (err) return next(err);
             syncModel(data, req.body);
 
-            data.save(function(err) {
-                if (err) return next(err);
-                return res.redirect("/gateway/getChildren/" + data.parentId);
+            Gate.findOne ( {_id: data.parentId }, function ( err, doc ) {
+                if ( err ) return next ( err );
+                doc = doc || { ancestor: [] };
+                var ancestor = doc.ancestor;
+                ancestor.push ( data.parentId );
+
+                data.ancestor = ancestor;
+
+                data.save(function(err) {
+                    if (err) return next(err);
+                    return res.redirect("/gateway/getChildren/" + data.parentId);
+                });
             });
         });
     }

@@ -44,7 +44,24 @@
                 ///Find all the documents whose parentId equals to parentID
                 Gate.find({parentId: node}).sort({ind: 1}).exec(function(err, data) {
                     if (err) return callback ( err );
-                    return callback ( null, data );
+
+                    ///For each child, find their count and set it on count field
+                    async.forEachOf( data, function ( value, key, boom ){
+                        if ( value.type === 'Problem' || value.type  === "Text" ) return boom ( null );
+
+                        var id = value._id;
+
+                        ///Find count of this id
+                        Gate.count({ancestor:id,type: {$in: ["Problem", "Text"]} }, function(err,cnt){
+                            if ( err ) return boom ( err );
+                            value.totalCount = cnt;
+                            return boom ( null );
+                        });
+
+                    }, function ( err ){
+                        if ( err ) return callback ( err );
+                        return callback ( null, data );
+                    });
                 });
             },
             rootCount: function ( callback ) {

@@ -31,7 +31,9 @@ block content
                             td= index + 1
                             if val.type !== "Problem" && val.type !== "Text"
                                 td= val.name
-                                td #[i.fa.fa-folder-o(aria-hidden="true") ]
+                                td
+                                    i.fa.fa-folder-o(aria-hidden="true")
+                                    span &nbsp; #{val.userCount || "--" }/#{val.totalCount}
                                 td #[a(href="/gateway/getChildren/"+val._id) Open]
                             else if val.type === "Text"
                                 td= val.name

@@ -132,10 +132,21 @@
     function postInsert(req, res, next) {
         var content = {};
         syncModel(content, req.body);
-        var newItem = new Gate(content);
-        newItem.save(function(err, data) {
-            if (err) return next(err);
-            return res.redirect("/gateway/getChildren/" + data.parentId);
+
+        ///Calculate ancestor
+        Gate.findOne( {_id:content.parentId}, function ( err, doc ) {
+            if ( err ) return next ( err );
+            doc = doc || { ancestor: [] }; ///Handle root
+
+            var ancestor = doc.ancestor;
+            ancestor.push( content.parentId );
+            content.ancestor = ancestor;
+
+            var newItem = new Gate(content);
+            newItem.save(function(err, data) {
+                if (err) return next(err);
+                return res.redirect("/gateway/getChildren/" + data.parentId);
+            });
         });
     }
 

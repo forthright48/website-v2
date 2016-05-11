@@ -1,0 +1,10 @@
+extends ../layout.pug
+
+block content
+    .items.u-fill-view.u-text-center
+        h1 User List
+        .box
+            .any.items
+                ol
+                    each val in data
+                        li #{val.username}

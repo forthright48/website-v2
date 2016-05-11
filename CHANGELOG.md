@@ -6,7 +6,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### User
 - Verify email
 - Validate username
-- User list
 ### Site Feature
 - Statistics on number of problems added in last 1d/2d/1w/1m/3m/6m/1y
 ### Admin Panel
@@ -18,8 +17,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Breadcrumb
 - Delimit latex in markdown so that it renders properly.
 
-##[1.1.0] - 2016-5-X
-
+##[1.2.0] - 2016-5-X
+### Add
+- View for showing all user list at /users/userlist
 
 ## [1.1.0] - 2016-5-10
 ### Add

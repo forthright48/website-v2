@@ -20,6 +20,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ##[1.2.0] - 2016-5-X
 ### Add
 - View for showing all user list at /users/userlist
+### Edit
+- "Username already in use" shown when registering with duplicate username
 
 ## [1.1.0] - 2016-5-10
 ### Add

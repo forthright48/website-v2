@@ -27,3 +27,5 @@ To set a custom id in mongoose, set _id to mixed.
 11. [Read file in nodejs](https://docs.nodejitsu.com/articles/file-system/how-to-read-files-in-nodejs)
 
 12. [Asyc.js Library Use](http://www.sebastianseilund.com/nodejs-async-in-practice)
+
+13. [Regex Basics in JS](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions)

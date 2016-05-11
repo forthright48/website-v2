@@ -29,9 +29,8 @@
 
     // Create New User
     function register( req, res ) {
-        // return world.handleError ( req, res, "Nice Try. But nope." );
 
-        // TODO: Validate unique username and send notification accordingly
+        // Validate username contains letters and numbers only
         var username = req.body.username;
         var password = req.body.password;
 
@@ -41,7 +40,8 @@
                 password: hash
             }, function ( err, user ) {
                 if ( err ) {
-                    return world.handleError ( req, res, "Registration problem", err );
+                    if ( err.code == 11000 ) return world.handleError ( req, res, "Username already in use" );
+                    else return world.handleError ( req, res, "Registration problem" );
                 }
 
                 return world.myRender ( req, res, "success", {

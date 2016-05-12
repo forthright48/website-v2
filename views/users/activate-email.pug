@@ -8,6 +8,6 @@ block content
             p Your current email address is:
                 b #{ " " + email}
 
-            a.button Send Activation Mail
+            a.button(href="/users/send-activation-link") Send Activation Link
             span= " "
             a.button(href="/users/edit-profile") Change Email

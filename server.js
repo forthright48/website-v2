@@ -39,9 +39,12 @@
         return world.handleError ( req, res, "Access Denied!" );
     });
 
-    /*Email Activation*/
+    /*Middleware to force Email Activation*/
     app.get("/*", function ( req, res, next ) {
-        if ( req.url !== '/users/edit-profile' && req.url !== '/users/activate-email' && req.session.needActivation )   return res.redirect ( "/users/activate-email" );
+        ///Don't stop activation link
+        if ( req.url.indexOf( "/users/activate-account") === 0 ) return next ();
+
+        if ( req.url !== "/users/logout" && req.url !== "/users/send-activation-link" && req.url !== '/users/edit-profile' && req.url !== '/users/activate-account' && req.session.needActivation )   return res.redirect ( "/users/activate-account" );
         return next();
     });
 

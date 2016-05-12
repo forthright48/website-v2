@@ -11,7 +11,7 @@
 
     var router = express.Router();
 
-    router.get("/register", registerGet )
+    router.get("/register", registerGet );
     router.post ( "/register", registerPost );
     router.post ( "/login", loginPost );
     router.get ( "/login", loginGet );
@@ -89,6 +89,7 @@
                 req.session.isLoggedIn = true;
                 req.session.status = user.status;
                 if ( !user.activated ) req.session.needActivation = !user.activated;
+                if ( req.session.needActivation ) req.session.email = user.email;
 
                 return world.myRender ( req, res, "success", {
                     title: "Successfully logged In",

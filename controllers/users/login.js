@@ -34,6 +34,8 @@
         var username = req.body.username;
         var password = req.body.password;
 
+        if ( !world.validate.username(username) ) return world.handleError(req,res,"Invalid username" );
+
         bcrypt.hash ( password, 10, function ( err, hash ) {
             User.create ({
                 username: username,

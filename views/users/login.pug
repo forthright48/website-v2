@@ -9,7 +9,7 @@ block content
                 .box
                     .four.items.offset-by-four
                         label(for="username") Username
-                        input.u-full-width(type="text", id="username", name="username" placeholder="letters and numbers only", requred, pattern="[a-zA-Z0-9]+")
+                        input.u-full-width(type="text", id="username", name="username" placeholder="letters, numbers & underscores only", required, pattern="^[a-zA-Z0-9_]+$/")
                 .box
                     .four.items.offset-by-four
                         label(for="password") Password

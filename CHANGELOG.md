@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [TODO]
 ### User
 - Verify email
-- Validate username
+    - Add email field for users
 ### Site Feature
 - Statistics on number of problems added in last 1d/2d/1w/1m/3m/6m/1y
 ### Admin Panel
@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ##[1.2.0] - 2016-5-X
 ### Add
 - View for showing all user list at /users/userlist
+- Username validation from server side
 ### Edit
 - "Username already in use" shown when registering with duplicate username
 

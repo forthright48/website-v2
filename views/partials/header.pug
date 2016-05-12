@@ -24,5 +24,8 @@
                         li #[a(href="/admin/toggleAdmin") Admin(0)]
                 li #[a(href="/users/logout") Logout]
             else
-                li.u-flex-pull-right #[a(href="/users/login") Login/Register]
+                li.u-flex-pull-right
+                    a(href="/users/login") Login
+                    span /
+                    a(href="/users/register") Register
 hr

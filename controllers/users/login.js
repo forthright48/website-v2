@@ -11,7 +11,8 @@
 
     var router = express.Router();
 
-    router.post ( "/register", register );
+    router.get("/register", registerGet )
+    router.post ( "/register", registerPost );
     router.post ( "/login", loginPost );
     router.get ( "/login", loginGet );
     router.get ( "/logout", logout );
@@ -26,15 +27,21 @@
     Implementation
     *******************************************/
 
+    function registerGet (req, res, next ) {
+        return world.myRender ( req, res, "users/register", {});
+    }
 
     // Create New User
-    function register( req, res ) {
+    function registerPost( req, res, next ) {
 
         // Validate username contains letters and numbers only
         var username = req.body.username;
         var password = req.body.password;
+        var email = req.body.email;
 
+        /// In case some invalid strings bypasses JS validator on client side
         if ( !world.validate.username(username) ) return world.handleError(req,res,"Invalid username" );
+        if ( !world.validate.email(email) ) return world.handleError(req,res,"Invalid email" );
 
         bcrypt.hash ( password, 10, function ( err, hash ) {
             User.create ({
@@ -67,7 +74,7 @@
                 return world.handleError ( req, res, "Login problem", err );
             }
             if ( !user ) {
-                return world.handleError ( req, res, "No Such User" );
+                return world.handleError ( req, res, "Username not registered" );
             }
 
             bcrypt.compare ( password, user.password, function ( err, success ) {
@@ -94,7 +101,6 @@
 
     function loginGet (req, res) {
         return world.myRender ( req, res, "users/login", {});
-
     }
 
     function logout ( req, res, next ) {

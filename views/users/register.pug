@@ -16,4 +16,8 @@ block content
                         input.u-full-width(type="password", id="password", name="password", required)
                 .box
                     .six.items.offset-by-three
-                        input.u-full-width(type="submit", formmethod="post", formaction="/users/login", value="Login")
+                        label(for="email") Email
+                        input.u-full-width(type="email", id="email", name="email", required)
+                .box
+                    .six.items.offset-by-three
+                        input.u-full-width(type="submit", formmethod="post", formaction="/users/register", value="Register")

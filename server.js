@@ -31,12 +31,18 @@
     /*DB*/
     require ( "./models/db.js").addSession(app);
 
-    /*Authentication*/
+    /*Root Authentication*/
     app.get ( "/admin/*", function(req,res,next){
         if ( req && req.session ) {
             if ( req.session.status === 'root' ) return next();
         }
         return world.handleError ( req, res, "Access Denied!" );
+    });
+
+    /*Email Activation*/
+    app.get("/*", function ( req, res, next ) {
+        if ( req.url !== '/users/edit-profile' && req.url !== '/users/activate-email' && req.session.needActivation )   return res.redirect ( "/users/activate-email" );
+        return next();
     });
 
     /*Home*/

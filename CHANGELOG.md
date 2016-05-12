@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Add
 - View for showing all user list at /users/userlist
 - Username validation from server side
+- Separate view for registration
 ### Edit
 - "Username already in use" shown when registering with duplicate username
 

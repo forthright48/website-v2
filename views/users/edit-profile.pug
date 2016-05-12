@@ -1,0 +1,23 @@
+extend ../layout.pug
+
+block content
+    .box.u-fill-view
+        .any.items
+            h1.u-text-center Edit Profile
+
+            form
+                .box
+                    .six.items.offset-by-three
+                        p #[b Username]: #{username}
+
+                .box
+                    .six.items.offset-by-three
+                        label(for="email") Email
+                        input.u-full-width(type="email", id="email", name="email", required, value=email)
+                .box
+                    .six.items.offset-by-three
+                        label(for="password") Password
+                        input.u-full-width(type="password", id="password", name="password", required)
+                .box
+                    .six.items.offset-by-three
+                        input.u-full-width(type="submit", formmethod="post", formaction="/users/edit-profile", value="Update")

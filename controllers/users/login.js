@@ -46,11 +46,12 @@
         bcrypt.hash ( password, 10, function ( err, hash ) {
             User.create ({
                 username: username,
-                password: hash
+                password: hash,
+                email: email
             }, function ( err, user ) {
                 if ( err ) {
                     if ( err.code == 11000 ) return world.handleError ( req, res, "Username already in use" );
-                    else return world.handleError ( req, res, "Registration problem" );
+                    else return world.handleError ( req, res, "Registration problem", err );
                 }
 
                 return world.myRender ( req, res, "success", {
@@ -87,6 +88,7 @@
                 req.session.username = req.body.username;
                 req.session.isLoggedIn = true;
                 req.session.status = user.status;
+                if ( !user.activated ) req.session.needActivation = !user.activated;
 
                 return world.myRender ( req, res, "success", {
                     title: "Successfully logged In",

@@ -5,6 +5,14 @@ block content
         h1 User List
         .box
             .any.items
-                ol
-                    each val in data
-                        li #{val.username}
+                table(align="center")
+                    thead
+                        th Index
+                        th Username
+                        th Activated
+                    tbody
+                        each val,key in data
+                            tr
+                                td= key+1
+                                td= val.username
+                                td= val.activated

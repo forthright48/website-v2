@@ -28,7 +28,10 @@ block content
                     tbody
                         each val, index in data
                             tr
-                                td= index + 1
+                                td
+                                    span= index + 1
+                                    if adminMode
+                                        span= " | " + val.ind
                                 if val.type !== "Problem" && val.type !== "Text"
                                     td= val.name
                                     td

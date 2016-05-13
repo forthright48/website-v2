@@ -18,6 +18,8 @@
         hint: { type: String, set : removeNullOrBlank }, /// Shoud be removed slowly
 
         doneList: [mongoose.Schema.ObjectId] ///Stores the userID who solved the problem
+    },{
+        timestamps: true
     });
 
     var Gate = mongoose.model("Gateway", schema );

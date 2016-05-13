@@ -104,7 +104,7 @@
             ///Send this token with mail
             var email = {
                 to: [ req.session.email ],
-                from: 'no-reply@forthright48.com',
+                from: 'forthright48-no-reply@forthright48.com',
                 subject: 'Account activation link',
                 text: 'Here is your activation link: http://www.forthright48.com/users/activate-account/' + token,
                 html: 'Here is your activation link: <a href="http://www.forthright48.com/users/activate-account/' + token +'">Activation Link </a>'

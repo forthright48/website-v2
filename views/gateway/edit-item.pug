@@ -36,6 +36,7 @@ block content
                         label(for="platform") Platform: #{platform}
                         select.u-full-width(id="platform",name="platform")
                             option(selected=!platform, value="") Select a Platform
+                            option(value="CF", selected=platform==="CF") CF
                             option(value="HR", selected=platform==="HR") HackerRank
                             option(value="LOJ", selected=platform==="LOJ") LightOJ
                             option(value="UVa", selected=platform==="UVa") UVa
@@ -59,6 +60,6 @@ block content
                     .any.items.u-text-center
                         input.u-full-width(type="submit",formmethod="post",formaction="/admin/gateway/edit/"+_id, value="Update")
                     .any.items.u-text-center
-                        button.u-full-width(type="submit",name="button",formmethod="post",formaction="/admin/gateway/delete/"+_id)
+                        button.u-full-width.danger(type="submit",name="button",formmethod="post",formaction="/admin/gateway/delete/"+_id)
                             i.fa.fa-trash-o
                             span Delete

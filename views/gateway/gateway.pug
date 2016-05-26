@@ -7,11 +7,14 @@ block content
                 a.button(href="/admin/gateway/insert/"+root._id) Insert
     .box
         .any.items.u-text-center
-            h4.u-inline Gateway - #{root.name} &nbsp
-            a(href="/gateway/getChildren/"+root.parentId)
-                .fa.fa-level-up(aria-hidden="true")
-                span Go Up
-            div #{root.userCount}/#{root.totalCount} Items under this folder
+            h4.u-inline Gateway - #{root.name}
+            div
+                a(href="/gateway/getChildren/"+root.parentId)
+                    .fa.fa-level-up(aria-hidden="true")
+                    span Go Up
+                span= " | "
+                span #{root.userCount}/#{root.totalCount} Tasks Solved | &nbsp
+                a(href="/gateway/stats") More Stats
     .item.u-fill-view
         .box
             // Table to display content of folders

@@ -37,13 +37,14 @@ block content
                         label(for="platform") Platform:
                         select.u-full-width(id="platform",name="platform")
                             option(disabled, selected, value="") Select a Platform
+                            option(value="CF") CF
                             option(value="HR") HackerRank
+                            option(value="HDU") HDU
                             option(value="LOJ") LightOJ
-                            option(value="UVa") UVa
+                            option(value="POJ") POJ
                             option(value="SPOJ") SPOJ
                             option(value="Toph") Toph
-                            option(value="HDU") HDU
-                            option(value="POJ") POJ
+                            option(value="UVa") UVa
                     .any.items
                         label(for="pid") Problem ID:
                         input.u-full-width(type="text", id="pid", name="pid")

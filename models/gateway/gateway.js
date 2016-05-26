@@ -8,14 +8,14 @@
         parentId: { type: mongoose.Schema.ObjectId, set : removeNullOrBlank },
         ancestor: [mongoose.Schema.ObjectId],
         ind: { type: Number, set : removeNullOrBlank },///To reorder items inside same folder
-        name: { type: String, set : removeNullOrBlank },
+        name: { type: String, set : removeNullOrBlank, trim: true },
 
-        body: {type: String, set : removeNullOrBlank },/// Contains text body
+        body: {type: String, set : removeNullOrBlank, trim: true },/// Contains text body
 
         platform: { type: String, set : removeNullOrBlank },
         pid: { type: String, set : removeNullOrBlank },
-        link: { type: String, set : removeNullOrBlank },/// Link for problem or text
-        hint: { type: String, set : removeNullOrBlank }, /// Shoud be removed slowly
+        link: { type: String, set : removeNullOrBlank, trim: true },/// Link for problem or text
+        hint: { type: String, set : removeNullOrBlank, trim: true}, /// Shoud be removed slowly
 
         doneList: [mongoose.Schema.ObjectId] ///Stores the userID who solved the problem
     },{

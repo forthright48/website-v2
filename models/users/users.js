@@ -11,7 +11,7 @@ Model for Users Database
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         status: { type: String, default: "user"}, // Type of user [admin,User]
-        email: { type: String, required: true, unique: true },
+        email: { type: String, required: true, unique: true, trim: true },
         activated: { type: Boolean, default: false }
     },{
         timestamps: true

@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block content
+    .item.u-fill-view.u-flex-top
+        .box
+            .any.items
+                table(align="center")
+                    thead
+                        th Duration
+                        th Tasks Added
+                    tbody
+                        tr
+                            td Last 30 Days
+                            td= month
+                        tr
+                            td Last 7 days
+                            td= week
+        .box
+            .any.items
+                h3.u-text-center
+                    a(href="/users/userList") User Stats

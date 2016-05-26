@@ -212,15 +212,38 @@
         var content = {};
         syncModel(content, req.body);
 
-        ///Calculate ancestor
-        Gate.findOne( {_id:content.parentId}, function ( err, doc ) {
+        async.parallel({
+            exist : function ( callback ) {
+                ///Before adding the problem, check whether such problem already exists in database
+                if ( content.type !== 'Problem' ) {
+                    callback ( null, 0 );
+                }
+                else {
+                    Gate.count ({type:content.type, platform: content.platform, pid: content.pid}, function ( err, cnt) {
+                        if ( err ) return callback ( err );
+                        return callback ( null, cnt );
+                    });
+                }
+            },
+            item: function ( callback ) {
+                ///Calculate ancestor
+                Gate.findOne( {_id:content.parentId}, function ( err, doc ) {
+                    if ( err ) return callback ( err );
+                    doc = doc || { ancestor: [] }; ///e root
+
+                    var ancestor = doc.ancestor;
+                    ancestor.push( content.parentId );
+                    content.ancestor = ancestor;
+
+                    return callback ( null );
+                });
+            }
+        }, function ( err, result) {
             if ( err ) return next ( err );
-            doc = doc || { ancestor: [] }; ///Handle root
 
-            var ancestor = doc.ancestor;
-            ancestor.push( content.parentId );
-            content.ancestor = ancestor;
-
+            if ( result.exist ) {
+                return world.handleError ( req, res, "Problem already exist" );
+            }
             var newItem = new Gate(content);
             newItem.save(function(err, data) {
                 if (err) return next(err);

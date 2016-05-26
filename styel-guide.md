@@ -15,3 +15,5 @@
 1. Variable names will be of form "likeThisWithFirstLetterInLowerAlphabet" - camel case.
 
 1. When looping through an array, use for(i=0,i<arr.length;i++) style. [This](http://stackoverflow.com/questions/3010840/loop-through-array-in-javascript)
+
+1. When adding problem from CF, it will be contestID+letter, eg: 1235D, 300A. Don't add slash.

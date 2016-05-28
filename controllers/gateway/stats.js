@@ -10,7 +10,19 @@
 
     var router = express.Router();
 
-    router.get ( "/", function( req, res, next ) {
+    router.get ( "/", getStats);
+
+    module.exports = {
+        addRouter : function ( app ) {
+            app.use ( "/gateway/stats", router );
+        }
+    };
+
+    /*******************************************
+    Implementation
+    *******************************************/
+
+    function getStats ( req, res, next ) {
         var duration = {};
 
         duration.now = moment();
@@ -42,11 +54,5 @@
             return world.myRender ( req, res, "gateway/stats", result );
         });
 
-    });
-
-    module.exports = {
-        addRouter : function ( app ) {
-            app.use ( "/gatewayStats", router );
-        }
-    };
+    }
 }());

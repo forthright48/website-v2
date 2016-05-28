@@ -63,3 +63,7 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 # String
 
 1. [Minimum Expression](./notes/minimumExpression.md)
+
+# Todo
+
+1. [Integer Square Root](https://en.wikipedia.org/wiki/Integer_square_root#Using_only_integer_division)

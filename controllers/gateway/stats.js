@@ -16,6 +16,7 @@
         duration.now = moment();
         duration.month = moment().subtract( 1, "months").startOf("day").format();
         duration.week = moment().subtract( 1, "weeks").startOf("day").format();
+        duration.two = moment().subtract( 2, "days").startOf("day").format();
 
         async.parallel({
             month: function ( call ) {
@@ -26,6 +27,12 @@
             },
             week: function ( call ) {
                 Gate.where("createdAt").gte(duration.week).count( function ( err, cnt) {
+                    if ( err ) return call ( err );
+                    return call ( null, cnt );
+                });
+            },
+            two: function ( call ) {
+                Gate.where("createdAt").gte(duration.two).count( function ( err, cnt) {
                     if ( err ) return call ( err );
                     return call ( null, cnt );
                 });

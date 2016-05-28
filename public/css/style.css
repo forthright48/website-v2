@@ -66,6 +66,9 @@ hr {
     background-color: tomato;
     color: black;
 }
+.danger-text {
+    color: tomato;
+}
 
 .debug {
     border: 1px solid red;

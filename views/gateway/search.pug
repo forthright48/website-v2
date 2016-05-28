@@ -1,0 +1,36 @@
+extends ../layout.pug
+
+block content
+    .box.u-fill-view
+        .any.items
+            if state == 'not found'
+                h2.danger-text.u-text-center= msg
+            if state == 'blank'
+                h2.u-text-center= msg
+            if state == 'found'
+                div.u-text-center
+                    h2 #[a(href="/gateway/getChildren/" + parentId )= parentId]
+                    a(href="/gateway/search") Search again
+            if state != 'found'
+                form
+                    .box.u-text-center
+                        .four.items
+                            label(for="platform") Platform
+                            select.u-full-width(id="platform",name="platform",required)
+                                option(disabled, selected, value="") Select a Platform
+                                option(value="CF") CF
+                                option(value="HR") HackerRank
+                                option(value="HDU") HDU
+                                option(value="LOJ") LightOJ
+                                option(value="POJ") POJ
+                                option(value="SPOJ") SPOJ
+                                option(value="Toph") Toph
+                                option(value="UVa") UVa
+                                option(value="UVaLive") UVaLive
+                                option(value="ZOJ") ZOJ
+                        .four.items
+                            label(for="pid") Problem ID
+                            input.u-full-width(type="text", id="pid", name="pid", required)
+                        .four.items
+                            label Submit
+                            input.u-full-width(type="submit",formmethod="post",formaction="/gateway/search", value="search")

@@ -65,6 +65,7 @@
     require('./controllers/gateway/gateway.js').addRouter(app);
     require('./controllers/gateway/doneStat.js').addRouter(app);
     require('./controllers/gateway/stats.js').addRouter(app);
+    require('./controllers/gateway/search.js').addRouter(app);
 
     /*CPPS*/
     require('./controllers/cpps/cpps.js').addRouter(app);

@@ -3,21 +3,20 @@ Model for Psetting database.
 */
 
 (function() {
-    "use strict";
+  'use strict';
 
-    var mongoose = require("mongoose");
+  const mongoose = require('mongoose');
 
-    var schema = new mongoose.Schema({
-        index: 'number',
-        name: 'string',
-        usedIn: 'string',
-        link: "string"
-    });
+  const schema = new mongoose.Schema({
+    index: 'number',
+    name: 'string',
+    usedIn: 'string',
+    link: 'string'
+  });
 
-    var Psetting = mongoose.model("Psetting", schema);
+  const Psetting = mongoose.model('Psetting', schema);
 
-    module.exports = {
-        model: Psetting
-    };
-
+  module.exports = {
+    model: Psetting
+  };
 }());

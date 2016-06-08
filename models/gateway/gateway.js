@@ -1,40 +1,76 @@
 (function() {
-    'use strict';
-    var mongoose = require ( "mongoose" );
-    var express = require ( "express" );
+  'use strict';
+  const mongoose = require('mongoose');
 
-    var schema = new mongoose.Schema({
-        type: { type: String, set: removeNullOrBlank }, ///Folder vs item
-        parentId: { type: mongoose.Schema.ObjectId, set : removeNullOrBlank },
-        ancestor: [mongoose.Schema.ObjectId],
-        ind: { type: Number, set : removeNullOrBlank },///To reorder items inside same folder
-        name: { type: String, set : removeNullOrBlank, trim: true },
+  const schema = new mongoose.Schema({
 
-        body: {type: String, set : removeNullOrBlank, trim: true },/// Contains text body
+    ///Folder vs item
+    type: {
+      type: String,
+      set: removeNullOrBlank
+    },
+    parentId: {
+      type: mongoose.Schema.ObjectId,
+      set: removeNullOrBlank
+    },
+    ancestor: [mongoose.Schema.ObjectId],
 
-        platform: { type: String, set : removeNullOrBlank },
-        pid: { type: String, set : removeNullOrBlank },
-        link: { type: String, set : removeNullOrBlank, trim: true },/// Link for problem or text
-        hint: { type: String, set : removeNullOrBlank, trim: true}, /// Shoud be removed slowly
+    ///To reorder items inside same folder
+    ind: {
+      type: Number,
+      set: removeNullOrBlank
+    },
+    name: {
+      type: String,
+      set: removeNullOrBlank,
+      trim: true
+    },
 
-        doneList: [mongoose.Schema.ObjectId] ///Stores the userID who solved the problem
-    },{
-        timestamps: true
-    });
+    /// Contains text body
+    body: {
+      type: String,
+      set: removeNullOrBlank,
+      trim: true
+    },
 
-    var Gate = mongoose.model("Gateway", schema );
+    platform: {
+      type: String,
+      set: removeNullOrBlank
+    },
+    pid: {
+      type: String,
+      set: removeNullOrBlank
+    },
 
-    module.exports = {
-        model: Gate
-    };
+    /// Link for problem or text
+    link: {
+      type: String,
+      set: removeNullOrBlank,
+      trim: true
+    },
+    hint: {
+      type: String,
+      set: removeNullOrBlank,
+      trim: true
+    },
 
-    /*******************************************
-    Implementation
-    *******************************************/
+    doneList: [mongoose.Schema.ObjectId] ///Stores the userID who solved the problem
+  }, {
+    timestamps: true
+  });
 
-    function removeNullOrBlank ( data ) {
-        if ( data === null || data === "" ) return undefined;
-        return data;
-    }
+  const Gate = mongoose.model('Gateway', schema);
 
+  module.exports = {
+    model: Gate
+  };
+
+  /*******************************************
+  Implementation
+  *******************************************/
+
+  function removeNullOrBlank(data) {
+    if (data === null || data === '') return undefined;
+    return data;
+  }
 }());

@@ -1,0 +1,54 @@
+extends ../layout.pug
+
+block content
+  .box
+    .any.items
+      table.u-full-width(align="center")
+        thead
+            th Index
+            th Name
+            th Type
+            th Action
+            th Done
+            if adminMode
+                th Admin
+        tbody
+            each val, index in data
+                tr
+                    td
+                        span= index + 1
+                        if adminMode
+                            span= " | " + val.ind
+                    if val.type !== "Problem" && val.type !== "Text"
+                        td= val.name
+                        td
+                            i.fa.fa-folder-o(aria-hidden="true")
+                            span &nbsp; #{val.userCount}/#{val.totalCount}
+                        td #[a(href="/gateway/getChildren/"+val._id) Open]
+                    else if val.type === "Text"
+                        td= val.name
+                        td #[i.fa.fa-file-text-o(aria-hidden="true") ]
+                        td #[a(href="/gateway/read/"+val._id) Read]
+                    else if val.type === "Problem"
+                        td= val.platform + " " + val.pid + " - " + val.name
+                        td #[i.fa.fa-link(aria-hidden="true") ]
+                        td
+                            a(target="_blank", href=val.link) Solve
+                            if val.hint
+                                span= " | "
+                                a(href="/gateway/hint/"+val._id) Hints
+
+                    if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
+                        if doneList.indexOf(val._id.toString()) >= 0
+                            td
+                                a(href="/doneStat/remove-done-list/" + val._id+"?redirect="+root._id)
+                                    i.fa.fa-star
+                        else
+                            td
+                                a(href="/doneStat/add-done-list/" + val._id+"?redirect="+root._id)
+                                    i.fa.fa-star-o
+                    else
+                        td ---
+
+                    if adminMode
+                        td #[a(href="/admin/gateway/edit/"+val._id) Edit]

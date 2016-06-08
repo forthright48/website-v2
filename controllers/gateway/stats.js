@@ -1,58 +1,57 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    var express = require ( "express");
-    var world = require ( "forthright48/world");
-    var path = require ( "path");
-    var Gate = require( path.join ( world.root, "/models/gateway/gateway.js" ) ).model;
-    var async = require ( "async" );
-    var moment = require ("moment");
+  const express = require('express');
+  const world = require('forthright48/world');
+  const path = require('path');
+  const Gate = require(path.join(world.root, '/models/gateway/gateway.js')).model;
+  const async = require('async');
+  const moment = require('moment');
 
-    var router = express.Router();
+  const router = express.Router();
 
-    router.get ( "/", getStats);
+  router.get('/', getStats);
 
-    module.exports = {
-        addRouter : function ( app ) {
-            app.use ( "/gateway/stats", router );
-        }
-    };
-
-    /*******************************************
-    Implementation
-    *******************************************/
-
-    function getStats ( req, res, next ) {
-        var duration = {};
-
-        duration.now = moment();
-        duration.month = moment().subtract( 1, "months").startOf("day").format();
-        duration.week = moment().subtract( 1, "weeks").startOf("day").format();
-        duration.two = moment().subtract( 2, "days").startOf("day").format();
-
-        async.parallel({
-            month: function ( call ) {
-                Gate.where("createdAt").gte(duration.month).count( function ( err, cnt) {
-                    if ( err ) return call ( err );
-                    return call ( null, cnt );
-                });
-            },
-            week: function ( call ) {
-                Gate.where("createdAt").gte(duration.week).count( function ( err, cnt) {
-                    if ( err ) return call ( err );
-                    return call ( null, cnt );
-                });
-            },
-            two: function ( call ) {
-                Gate.where("createdAt").gte(duration.two).count( function ( err, cnt) {
-                    if ( err ) return call ( err );
-                    return call ( null, cnt );
-                });
-            }
-        }, function ( err, result ) {
-            if ( err ) return next ( err );
-            return world.myRender ( req, res, "gateway/stats", result );
-        });
-
+  module.exports = {
+    addRouter(app) {
+      app.use('/gateway/stats', router);
     }
+  };
+
+  /*******************************************
+  Implementation
+  *******************************************/
+
+  function getStats(req, res, next) {
+    const duration = {};
+
+    duration.now = moment();
+    duration.month = moment().subtract(1, 'months').startOf('day').format();
+    duration.week = moment().subtract(1, 'weeks').startOf('day').format();
+    duration.two = moment().subtract(2, 'days').startOf('day').format();
+
+    async.parallel({
+      month(call) {
+        Gate.where('createdAt').gte(duration.month).count(function(err, cnt) {
+          if (err) return call(err);
+          return call(null, cnt);
+        });
+      },
+      week(call) {
+        Gate.where('createdAt').gte(duration.week).count(function(err, cnt) {
+          if (err) return call(err);
+          return call(null, cnt);
+        });
+      },
+      two(call) {
+        Gate.where('createdAt').gte(duration.two).count(function(err, cnt) {
+          if (err) return call(err);
+          return call(null, cnt);
+        });
+      }
+    }, function(err, result) {
+      if (err) return next(err);
+      return world.myRender(req, res, 'gateway/stats', result);
+    });
+  }
 }());

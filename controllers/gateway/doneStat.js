@@ -1,56 +1,67 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    var express = require ( "express");
-    var world = require ( "forthright48/world");
-    var path = require ( "path");
-    var Gate = require( path.join ( world.root, "/models/gateway/gateway.js" ) ).model;
+  const express = require('express');
+  const world = require('forthright48/world');
+  const path = require('path');
+  const Gate = require(path.join(world.root, '/models/gateway/gateway.js')).model;
 
-    var router = express.Router();
+  const router = express.Router();
 
-    router.get( "/add-done-list/:ID", addDoneList );
-    router.get( "/remove-done-list/:ID", removeDoneList );
+  router.get('/add-done-list/:ID', addDoneList);
+  router.get('/remove-done-list/:ID', removeDoneList);
 
-    module.exports = {
-        addRouter: function ( app ) {
-            app.use ( "/doneStat", router );
-        }
-    };
+  module.exports = {
+    addRouter(app) {
+      app.use('/doneStat', router);
+    },
+  };
 
-    /*******************************************
-    Implementation
-    *******************************************/
+  /*******************************************
+  Implementation
+  *******************************************/
 
-    function addDoneList ( req, res, next ) {
-        var ID = req.params.ID;
-        var redirect = req.query.redirect || "000000000000000000000000";
-        var userID = req.session.userID;
+  function addDoneList(req, res, next) {
+    const ID = req.params.ID;
+    const redirect = req.query.redirect || '000000000000000000000000';
+    const userID = req.session.userID;
 
-        if ( !req.session.isLoggedIn ) {
-            return world.handleError ( req, res, "Login required" );
-        }
-
-        Gate.update({_id: ID}, {$addToSet: { doneList: userID }}, function ( err ) {
-            if ( err ) return next(err);
-
-            return res.redirect("/gateway/getChildren/" + redirect );
-        });
+    if (!req.session.isLoggedIn) {
+      return world.handleError(req, res, 'Login required');
     }
 
-    function removeDoneList ( req, res, next ) {
-        var ID = req.params.ID;
-        var redirect = req.query.redirect || "000000000000000000000000";
-        var userID = req.session.userID;
+    Gate.update({
+      _id: ID,
+    }, {
+      $addToSet: {
+        doneList: userID,
+      },
+    }, function(err) {
+      if (err) return next(err);
 
-        if ( !req.session.isLoggedIn ) {
-            return world.handleError ( req, res, "Login required" );
-        }
+      return res.redirect(`/gateway/getChildren/${redirect}`);
+    });
+  }
 
-        Gate.update({_id: ID}, {$pull: { doneList: userID }}, function ( err ) {
-            if ( err ) return next(err);
+  function removeDoneList(req, res, next) {
+    const ID = req.params.ID;
+    const redirect = req.query.redirect || '000000000000000000000000';
+    const userID = req.session.userID;
 
-            return res.redirect("/gateway/getChildren/" + redirect );
-        });
+    if (!req.session.isLoggedIn) {
+      return world.handleError(req, res, 'Login required');
     }
 
+    Gate.update({
+      _id: ID,
+    }, {
+      $pull: {
+        doneList: userID,
+      },
+    }, function(err) {
+      if (err) return next(err);
+
+      return res.redirect(`/gateway/getChildren/${redirect}`);
+    });
+  }
 }());

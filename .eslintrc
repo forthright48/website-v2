@@ -6,7 +6,7 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": [2, 'always'],
+    "comma-dangle": [2, 'never'],
     "no-cond-assign": 2,
     "no-constant-condition": 2,
     "no-dupe-args": 2,
@@ -67,12 +67,12 @@
     "space-in-parens": 2,
     "array-bracket-spacing": 2,
     "object-curly-spacing": ["error", "always"],
-    "max-len": 2,
+    "max-len": [2, 100],
     "comma-style": 2,
     "semi": 2,
     "radix": 2,
     "camelcase": 2,
     "new-cap": [2, {'capIsNewExceptions': [express.Router]} ],
-    "no-underscore-dangle": 2
+    "no-underscore-dangle": [2, { "allow": ['_id'] }]
   }
 }

@@ -23,7 +23,7 @@
 
         // TODO: Delimit backslash inside content
         return world.myRender(req, res, 'cpps/cpps', {
-          data: content,
+          data: content
         });
       });
     });
@@ -32,6 +32,6 @@
   module.exports = {
     addRouter(app) {
       app.use('/cpps', router);
-    },
+    }
   };
 }());

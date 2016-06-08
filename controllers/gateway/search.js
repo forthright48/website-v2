@@ -1,52 +1,52 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    var express = require ( "express");
-    var world = require ( "forthright48/world");
-    var path = require ( "path");
-    var Gate = require( path.join ( world.root, "/models/gateway/gateway.js" ) ).model;
+  const express = require('express');
+  const world = require('forthright48/world');
+  const path = require('path');
+  const Gate = require(path.join(world.root, '/models/gateway/gateway.js')).model;
 
-    var router = express.Router();
+  const router = express.Router();
 
-    router.get ( "/", getSearch );
-    router.post ( "/", postSearch );
+  router.get('/', getSearch);
+  router.post('/', postSearch);
 
-    module.exports = {
-        addRouter: function ( app ) {
-            app.use ( "/gateway/search", router );
-        }
-    };
-
-    /*******************************************
-    Implementation
-    *******************************************/
-
-    function getSearch ( req, res, next ) {
-        return world.myRender ( req, res, "gateway/search", {
-            msg: "Search a problem",
-            state: "blank"
-        });
+  module.exports = {
+    addRouter(app) {
+      app.use('/gateway/search', router);
     }
+  };
 
-    function postSearch ( req, res, next ) {
+  /*******************************************
+  Implementation
+  *******************************************/
 
-        var platform = req.body.platform;
-        var pid = req.body.pid;
+  function getSearch(req, res) {
+    return world.myRender(req, res, 'gateway/search', {
+      msg: 'Search a problem',
+      state: 'blank'
+    });
+  }
 
-        Gate.findOne ( {platform: platform, pid: pid}, function ( err, doc ) {
-            if ( err ) return next ( err );
+  function postSearch(req, res, next) {
+    const platform = req.body.platform;
+    const pid = req.body.pid;
 
-            if ( !doc ) return world.myRender ( req, res, "gateway/search", {
-                msg: "No such problem, try again",
-                state: 'not found'
-            } );
+    Gate.findOne({
+      platform,
+      pid
+    }, function(err, doc) {
+      if (err) return next(err);
 
-            return world.myRender ( req, res, "gateway/search", {
-                state: "found",
-                parentId: doc.parentId
-            });
-        });
+      if (!doc) return world.myRender(req, res, 'gateway/search', {
+        msg: 'No such problem, try again',
+        state: 'not found'
+      });
 
-    }
-
+      return world.myRender(req, res, 'gateway/search', {
+        state: 'found',
+        parentId: doc.parentId
+      });
+    });
+  }
 }());

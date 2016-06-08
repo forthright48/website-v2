@@ -14,7 +14,7 @@
   module.exports = {
     addRouter(app) {
       app.use('/doneStat', router);
-    },
+    }
   };
 
   /*******************************************
@@ -31,11 +31,11 @@
     }
 
     Gate.update({
-      _id: ID,
+      _id: ID
     }, {
       $addToSet: {
-        doneList: userID,
-      },
+        doneList: userID
+      }
     }, function(err) {
       if (err) return next(err);
 
@@ -53,11 +53,11 @@
     }
 
     Gate.update({
-      _id: ID,
+      _id: ID
     }, {
       $pull: {
-        doneList: userID,
-      },
+        doneList: userID
+      }
     }, function(err) {
       if (err) return next(err);
 

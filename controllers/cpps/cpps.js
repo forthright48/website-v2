@@ -1,38 +1,37 @@
 (function() {
-    'use strict';
-    var express = require ( "express" );
-    var path = require ( "path" );
-    var fs = require ( "fs" );
-    var marked = require ( "marked" );
-    var world = require ( "forthright48/world");
+  'use strict';
+  const express = require('express');
+  const path = require('path');
+  const fs = require('fs');
+  const marked = require('marked');
+  const world = require('forthright48/world');
 
-    var router = express.Router();
+  const router = express.Router();
 
-    router.get ( "/", function ( req, res ) {
-        res.redirect ( "/cpps/notebook.md" );
-    });
+  router.get('/', function(req, res) {
+    res.redirect('/cpps/notebook.md');
+  });
 
-    router.get ( "/*", function ( req, res, next ) {
-        var fileName = req.params[0];
+  router.get('/*', function(req, res, next) {
+    const fileName = req.params[0];
+    const filePath = path.join(__dirname, '../../models/cpps', fileName);
 
-        var filePath = path.join ( __dirname, "../../models/cpps", fileName );
+    fs.readFile(filePath, 'utf8', function(err, data) {
+      if (err) return next(err);
+      marked(data, function(err, content) {
+        if (err) return next(err);
 
-        fs.readFile ( filePath, "utf8", function ( err, data ) {
-            if ( err ) return next ( err );
-            marked ( data, function ( err, content ) {
-                if ( err ) return next ( err );
-
-                // TODO: Delimit backslash inside content
-                return world.myRender( req, res, "cpps/cpps", { data: content } );
-            });
+        // TODO: Delimit backslash inside content
+        return world.myRender(req, res, 'cpps/cpps', {
+          data: content,
         });
-
+      });
     });
+  });
 
-    module.exports = {
-        addRouter: function ( app ) {
-            app.use ( "/cpps", router );
-        }
-    };
-
+  module.exports = {
+    addRouter(app) {
+      app.use('/cpps', router);
+    },
+  };
 }());

@@ -52,7 +52,7 @@
     "prefer-rest-params": 2,
     "no-param-reassign": 1,
     "dot-notation": 2,
-    "one-var": 2,
+    "one-var": [2, 'never'],
     "eqeqeq": 2,
     "no-nested-ternary": 2,
     "no-unneeded-ternary": 2,
@@ -72,7 +72,7 @@
     "semi": 2,
     "radix": 2,
     "camelcase": 2,
-    "new-cap": 2,
+    "new-cap": [2, {'capIsNewExceptions': [express.Router]} ],
     "no-underscore-dangle": 2
   }
 }

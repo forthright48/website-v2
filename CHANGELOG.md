@@ -3,12 +3,6 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [TODO]
-### User
-- Verify email
-- Validate username
-
-### Site Feature
-- Statistics on number of problems added in last 1d/2d/1w/1m/3m/6m/1y
 
 ### Admin Panel
 - Admin panel to control different aspects of the website.
@@ -16,13 +10,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Misc
 - Cancel button in edit and insert pages.
-- When inserting a problem, check db whether it is already added
 - Breadcrumb
 - Delimit latex in markdown so that it renders properly.
 
-##[1.3.0] - 2016-5-X
-### Edit
+##[1.3.0] - 2016-6-8
 - Added timestamps to user and gateway model.
+- Verify email
+- Validate username
+- Statistics on number of problems added in last 2d/7d/30d
+- When inserting a problem, check db whether it is already added
+- Added ShowAll view to show all problems in gateway
 
 ##[1.2.0] - 2016-5-13
 ### Add

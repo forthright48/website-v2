@@ -23,6 +23,8 @@
   function showAll(req, res, next) {
     const userID = req.session.userID;
     const page = req.params.page;
+
+    //TODO: Allow users to select number of items seen per page
     const perPage = 50;
 
     Gate

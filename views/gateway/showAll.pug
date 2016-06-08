@@ -16,7 +16,7 @@ block content
             each val, index in data
                 tr
                     td
-                        span= index + 1
+                        span= offset + index + 1
                         if adminMode
                             span= " | " + val.ind
                     if val.type !== "Problem" && val.type !== "Text"

@@ -8,7 +8,7 @@
 
   const router = express.Router();
 
-  router.get('/', showAll);
+  router.get('/:page', showAll);
 
   module.exports = {
     addRouter(app) {
@@ -22,11 +22,15 @@
 
   function showAll(req, res, next) {
     const userID = req.session.userID;
+    const page = req.params.page;
+    const perPage = 50;
 
     Gate
       .find({
         type: 'Problem'
       })
+      .limit(perPage)
+      .skip(page * perPage)
       .exec(function(err, data) {
         if (err) return next(err);
 
@@ -44,7 +48,10 @@
 
         return world.myRender(req, res, 'gateway/showAll', {
           data,
-          doneList
+          doneList,
+          page,
+          perPage,
+          offset: page * perPage
         });
       });
   }

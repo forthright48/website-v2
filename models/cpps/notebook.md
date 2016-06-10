@@ -22,15 +22,17 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 
 # Geometry
 
+1. [Great Circle Distance](./notes/greatCircleDistance.md)
 1. [Rotating Calipers](./notes/rotatingCalipers.md)
 
 # Graph Theory
 
-1. [Articulation Point](./notes/articulationPoint.md)
-1. [Bridge](./notes/bridge.md)
-1. [Prufer Code](./notes/pruferCode.md)
 1. [2SAT](./notes/2SAT.md)
+1. [Articulation Point](./notes/articulationPoint.md)
+1. [Block Cut Tree](./notes/blockCutTree.md)
+1. [Bridge](./notes/bridge.md)
 1. [Euler Path](./notes/eulerPath.md)
+1. [Prufer Code](./notes/pruferCode.md)
 1. [Shortest Path Graph](./notes/shortestPathGraph.md)
 
 # Greedy

@@ -13,7 +13,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Breadcrumb
 - Delimit latex in markdown so that it renders properly.
 
-##[1.3.0] - 2016-6-8
+## [1.3.1] - 2016-6-10
+- Notebook
+  - Block Cut Tree
+  - Great Circle Distance
+- Fixed minor bugs
+
+## [1.3.0] - 2016-6-8
 - Added timestamps to user and gateway model.
 - Verify email
 - Validate username
@@ -21,7 +27,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - When inserting a problem, check db whether it is already added
 - Added ShowAll view to show all problems in gateway
 
-##[1.2.0] - 2016-5-13
+## [1.2.0] - 2016-5-13
 ### Add
 - View for showing all user list at /users/userlist
 

@@ -44,11 +44,11 @@ block content
                     if ( val.type === "Problem" || val.type === "Text" ) && isLoggedIn
                         if doneList.indexOf(val._id.toString()) >= 0
                             td
-                                a(href="/doneStat/remove-done-list/" + val._id+"?redirect="+root._id)
+                                a(href="/doneStat/remove-done-list/" + val._id+"?redirect="+val.parentId)
                                     i.fa.fa-star
                         else
                             td
-                                a(href="/doneStat/add-done-list/" + val._id+"?redirect="+root._id)
+                                a(href="/doneStat/add-done-list/" + val._id+"?redirect="+val.parentId)
                                     i.fa.fa-star-o
                     else
                         td ---

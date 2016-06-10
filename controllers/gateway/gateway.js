@@ -266,10 +266,12 @@
         ///Calculate ancestor
         Gate.findOne({
           _id: content.parentId
-        }, function(err, doc = {
-          ancestor: []
-        }) {
+        }, function(err, tdoc) {
           if (err) return callback(err);
+
+          const doc = tdoc || {
+            ancestor: []
+          };
 
           const ancestor = doc.ancestor;
           ancestor.push(content.parentId);

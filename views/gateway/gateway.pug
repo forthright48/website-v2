@@ -6,21 +6,21 @@ block content
             .any.items.u-text-center
                 a.button(href="/admin/gateway/insert/"+root._id) Insert
     .box
-        .four.items.u-text-center
+        .three.items.u-text-center
             div
                 span #{root.userCount}/#{root.totalCount} Tasks Solved
-        .four.items.u-text-center
+        .six.items.u-text-center
             h4.u-inline Gateway - #{root.name}
             div
                 a(href="/gateway/getChildren/"+root.parentId)
                     .fa.fa-level-up(aria-hidden="true")
                     span Go Up
-        .four.items.u-text-center
+        .three.items.u-text-center
             a(href="/gateway/stats") Stats
             span= " | "
             a(href="/gateway/search") Search
             span= " | "
-            a(href="/gateway/showAll/0") Show All 
+            a(href="/gateway/showAll/0") Show All
 
     .item.u-fill-view
         .box

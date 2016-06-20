@@ -48,6 +48,11 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 # Network Flow
 
 1. [Minimum Cut](./notes/minimumCut.md)
+2. Bipartite Matching
+    - Kuhn's Algorithm
+    - [Vertex Cover](./notes/vertexCover.md)
+    - Independent Set
+    - Path Cover
 
 # Number Theory
 

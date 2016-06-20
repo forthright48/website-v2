@@ -66,7 +66,7 @@ Even though it doesn't make any sense, but output of euclidean algorithm, which 
 
 Using all the theories above, the following code generates solution to Linear Diophantine Equation.
 
-```
+```cpp
 /****************
 Returns char according to kind of solution.
 run and rise variable to generate more solution.

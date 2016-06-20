@@ -52,11 +52,13 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 # Number Theory
 
 1. [Fibonacci Numbers](./notes/fibonacciNumbers.md)
+1. [GCD-Sum Function](./notes/gcdSum.md)
+1. Diophantine Equation
+    - [Linear Diophantine Equation](./notes/linearDiophantineEquation.md)
 1. [Polite Numbers](./notes/politeNumbers.md)
 1. [Prime Gap](./notes/primeGap.md)
-1. [Wilson's Theorem](./notes/wilsonsTheorem.md)
 1. [Square Numbers](./notes/squareNumbers.md)
-1. [GCD-Sum Function](./notes/gcdSum.md)
+1. [Wilson's Theorem](./notes/wilsonsTheorem.md)
 
 # Probability Theory
 

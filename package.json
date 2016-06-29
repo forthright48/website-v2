@@ -1,10 +1,11 @@
 {
   "name": "forthright48-v2",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "My personal website",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "./node_modules/mocha/bin/mocha --recursive --reporter spec ./tests"
   },
   "author": "Mohammad Samiul Islam",
   "license": "MIT",
@@ -25,5 +26,10 @@
     "nodemailer": "^2.4.0",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "pug": "^2.0.0-alpha6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "superagent": "^2.0.0"
   }
 }

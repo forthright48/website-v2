@@ -8,6 +8,7 @@
   const errorhandler = require('errorhandler');
 
   const app = express();
+  const server = require('http').createServer(app);
 
   /*******************************************
   Configuration
@@ -15,7 +16,7 @@
 
   /*App*/
   app.set('port', process.env.PORT || 8080);
-  app.use(express.static(path.join(__dirname, '/public'))); ///Configure the public folder
+  app.use('/public', express.static(path.join(__dirname, '/public')));
   app.use(bodyParser.json()); // support json encoded bodies
   app.use(bodyParser.urlencoded({
     extended: true
@@ -74,13 +75,20 @@
   /*Misc*/
   require('./controllers/misc/dbdesign').addRouter(app);
 
-  app.listen(app.get('port'), function() {
-    console.log(`Server running at port ${ app.get('port') }`);
-  });
-
   app.get('/*', function createError(req, res) {
     return world.handleError(req, res, '404 Page Not Found');
   });
 
   app.use(errorhandler()); // Stack trace
+
+  if (require.main === module) {
+    server.listen(app.get('port'), function() {
+      console.log(`Server running at port ${ app.get('port') }`);
+    });
+  } else {
+    module.exports = {
+      server,
+      app
+    };
+  }
 }());

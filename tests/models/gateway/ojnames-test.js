@@ -31,15 +31,47 @@
       Array.isArray(testobject).should.be.false;
     });
     it('should contain a key named data', function() {
-      testobject.hasOwnProperty('data').should.be.true;
+      testobject.should.have.ownProperty('data');
     });
     it('should have a array in data field', function() {
       Array.isArray(testobject.data).should.be.true;
     });
 
     describe('data', function() {
-      it('should be non-empty');
-      it('should contain strings only');
+      let data;
+      const OJList = [
+        'CF',
+        'HR',
+        'HDU',
+        'LOJ',
+        'POJ',
+        'SPOJ',
+        'Toph',
+        'URAL',
+        'UVa',
+        'UVaLive',
+        'ZOJ'
+      ];
+      before(function() {
+        data = testobject.data;
+        Array.isArray(data).should.be.true;
+      });
+
+      it('should be non-empty', function() {
+        data.should.have.length.above(0);
+      });
+      it('should contain strings only', function() {
+        data.forEach(function(val) {
+          val.should.be.a('string');
+        });
+      });
+
+      it('should have every value present in OJList', function() {
+        data.forEach(function(val) {
+          val.should.be.oneOf(OJList);
+        })
+      });
+
     });
 
 

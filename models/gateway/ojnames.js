@@ -2,6 +2,18 @@
   'use strict';
 
   module.exports = {
-    data: []
+    data: [
+      'CF',
+      'HR',
+      'HDU',
+      'LOJ',
+      'POJ',
+      'SPOJ',
+      'Toph',
+      'URAL',
+      'UVa',
+      'UVaLive',
+      'ZOJ'
+    ]
   };
 }());

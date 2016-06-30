@@ -30,6 +30,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
+    "rewire": "^2.5.1",
     "superagent": "^2.0.0"
   }
 }

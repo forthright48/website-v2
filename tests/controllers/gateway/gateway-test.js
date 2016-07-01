@@ -52,12 +52,12 @@
         getInsert = testobject.__get__('getInsert');
         getInsert.should.exist;
       });
-      it('should throw error if req.params.parentID is not defined', function(done) {
+      it('should throw error if user not logged in', function(done) {
         request
-          .get(`${baseurl}/gateway/insert/`)
+          .get(`${baseurl}/admin/gateway/insert/`)
           .send({})
           .end(function(err, res) {
-            res.status.should.equal(404);
+            res.status.should.equal(403);
             done();
           });
       });

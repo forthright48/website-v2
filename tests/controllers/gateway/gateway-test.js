@@ -6,6 +6,7 @@
   const path = require('path');
   const rewire = require('rewire');
   const request = require('superagent');
+  const sinon = require('sinon');
 
   const {
     server,
@@ -18,15 +19,19 @@
   let testobject;
 
   describe(filename, function() {
+    ///Start Server
     before(function(done) {
       app.set('port', 1234);
       server.listen(app.get('port'), function(err) {
         done(err);
       });
     });
+
+    ///Load the file
     before(function() {
       testobject = rewire(filepath);
     });
+
 
     describe('ojnames', function() {
       let ojnames;
@@ -61,7 +66,18 @@
             done();
           });
       });
-      it('should call world.myRender() function');
+      it('should call world.myRender() function', sinon.test(function() {
+        let stub = sinon.stub(world, 'myRender');
+        const req = {
+          params: {}
+        };
+        const res = {};
+        stub.withArgs(req, res).returns();
+
+        getInsert(req, res);
+        stub.calledOnce.should.be.true;
+        stub.restore();
+      }));
       it('should throw error if context does not have ojnames defined for rendering');
     });
 

@@ -1,66 +1,57 @@
 extends ../layout.pug
 
 block content
-    .box
-        .any.items
-            form
-                h2 Common Info
-                .box
-                    .any.items
-                        label(for="type") Type:
-                        select.u-full-width(id="type",name="type",required)
-                            option(disabled, selected, value="") Select a Type
-                            option(value="Folder") Folder
-                            option(value="Text") Text
-                            option(value="Problem") Problem
-                    .any.items
-                        label(for="parentId") Parent ID:
-                        input.u-full-width(type="text",id="parentId",name="parentId",value=parentId)
-                .box
-                    .any.items
-                        label(for="ind") Index:
-                        input.u-full-width(type="number",step=0.1,id="ind",name="ind",required)
-                    .any.items
-                        label(for="name") Name:
-                        input.u-full-width(type="text",id="name",name="name",required)
+  .box
+    .any.items
+      form
+        h2 Common Info
+        .box
+          .any.items
+            label(for="type") Type:
+            select.u-full-width(id="type",name="type",required)
+              option(disabled, selected, value="") Select a Type
+              option(value="Folder") Folder
+              option(value="Text") Text
+              option(value="Problem") Problem
+          .any.items
+            label(for="parentId") Parent ID:
+            input.u-full-width(type="text",id="parentId",name="parentId",value=parentId)
+        .box
+          .any.items
+            label(for="ind") Index:
+            input.u-full-width(type="number",step=0.1,id="ind",name="ind",required)
+          .any.items
+            label(for="name") Name:
+            input.u-full-width(type="text",id="name",name="name",required)
 
-                h2 For Text
-                .box
-                    .any.items
-                        label(for="body") Body:
-                        textarea.u-full-width(id="body",name="body")
+        h2 For Text
+        .box
+          .any.items
+            label(for="body") Body:
+            textarea.u-full-width(id="body",name="body")
 
-                h2 For Problem
-                .box
-                    .any.items
-                        label(for="platform") Platform:
-                        select.u-full-width(id="platform",name="platform")
-                            option(disabled, selected, value="") Select a Platform
-                            option(value="CF") CF
-                            option(value="HR") HackerRank
-                            option(value="HDU") HDU
-                            option(value="LOJ") LightOJ
-                            option(value="POJ") POJ
-                            option(value="SPOJ") SPOJ
-                            option(value="Toph") Toph
-                            option(value="URAL") Timus
-                            option(value="UVa") UVa
-                            option(value="UVaLive") UVaLive
-                            option(value="ZOJ") ZOJ
-                    .any.items
-                        label(for="pid") Problem ID:
-                        input.u-full-width(type="text", id="pid", name="pid")
+        h2 For Problem
+        .box
+          .any.items
+            label(for="platform") Platform:
+            select.u-full-width(id="platform",name="platform")
+              option(disabled, selected, value="") Select a Platform
+              each val in ojnames.data
+                option(value=val)= val
+          .any.items
+            label(for="pid") Problem ID:
+            input.u-full-width(type="text", id="pid", name="pid")
 
-                .box
-                    .any.items
-                        label(for="link") Link:
-                        input.u-full-width(type="text",id="link",name="link")
+        .box
+          .any.items
+            label(for="link") Link:
+            input.u-full-width(type="text",id="link",name="link")
 
-                .box
-                    .any.items
-                        label(for="hints") Hint:
-                        textarea.u-full-width(id="hint",name="hint")
+        .box
+          .any.items
+            label(for="hints") Hint:
+            textarea.u-full-width(id="hint",name="hint")
 
-                .box
-                    .any.items.u-text-center
-                        input(type="submit",formmethod="post",formaction="/admin/gateway/insert", value="Insert")
+        .box
+          .any.items.u-text-center
+            input(type="submit",formmethod="post",formaction="/admin/gateway/insert", value="Insert")

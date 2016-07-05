@@ -240,7 +240,7 @@ function getInsert(req, res) {
   const parentId = req.params.parentID;
   return world.myRender(req, res, 'gateway/insert', {
     parentId,
-    ojnames: {}
+    ojnames
   });
 }
 
@@ -300,6 +300,7 @@ function getEditItem(req, res, next) {
   const ID = req.params.ID;
   Gate.findById(ID, function(err, data) {
     if (err) return next(err);
+    data.ojnames = ojnames;
     return world.myRender(req, res, 'gateway/edit-item', data);
   });
 }

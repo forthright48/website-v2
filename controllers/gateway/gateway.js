@@ -239,7 +239,8 @@ Admin Router
 function getInsert(req, res) {
   const parentId = req.params.parentID;
   return world.myRender(req, res, 'gateway/insert', {
-    parentId
+    parentId,
+    ojnames: {}
   });
 }
 

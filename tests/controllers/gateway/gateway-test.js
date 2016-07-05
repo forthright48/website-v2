@@ -2,11 +2,13 @@
   'use strict';
   const world = require('forthright48/world');
   const should = require('chai').should();
+  const assert = require('chai').assert;
   const root = world.root;
   const path = require('path');
   const rewire = require('rewire');
   const request = require('superagent');
   const sinon = require('sinon');
+  const _ = require('lodash');
 
   const {
     server,
@@ -53,10 +55,13 @@
 
     describe('getInsert(req, res)', function() {
       let getInsert;
+      let ojnames;
       before(function() {
         getInsert = testobject.__get__('getInsert');
         getInsert.should.exist;
+        ojnames = testobject.__get__('ojnames');
       });
+
       it('should throw error if user not logged in', function(done) {
         request
           .get(`${baseurl}/admin/gateway/insert/`)
@@ -66,6 +71,7 @@
             done();
           });
       });
+
       it('should call world.myRender() function', sinon.test(function() {
         let stub = sinon.stub(world, 'myRender');
         const req = {
@@ -78,7 +84,20 @@
         stub.calledOnce.should.be.true;
         stub.restore();
       }));
-      it('should throw error if context does not have ojnames defined for rendering');
+
+      it('should throw error if context of world.myRender() does not have ojnames defined for rendering', sinon.test(function() {
+        const stub = sinon.stub(world, 'myRender');
+        const req = {
+          params: {}
+        };
+        const res = {};
+        stub.withArgs(req, res).returnsArg(3);
+
+        const test = getInsert(req, res);
+
+        assert.property(test, 'ojnames', 'No property names ojnames in context for render');
+        assert.isTrue(_.isEqual(test.ojnames, ojnames), 'does not match with ojnames variable in file');
+      }));
     });
 
     after(function(done) {

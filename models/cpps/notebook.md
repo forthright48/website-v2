@@ -8,6 +8,7 @@ Resources for Competitive Programming and Problem Solving. [More Details](./READ
 1. [Stars and Bars Theorem](./notes/starsAndBarsTheorem.md)
 1. [Catalan Numbers](./notes/catalanNumbers.md)
 1. [Bell Numbers](./notes/bellNumbers.md)
+1. [Mobius Function](./notes/mobiusFunction.md)
 
 # Data Structure
 

@@ -313,10 +313,11 @@ function postEditItem(req, res, next) {
 
     Gate.findOne({
       _id: data.parentId
-    }, function(err, doc = {
-      ancestor: []
-    }) {
+    }, function(err, doc) {
       if (err) return next(err);
+      if (!doc) doc = {
+        ancestor = []
+      };
 
       const ancestor = doc.ancestor;
       ancestor.push(data.parentId);

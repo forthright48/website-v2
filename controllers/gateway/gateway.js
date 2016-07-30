@@ -316,7 +316,7 @@ function postEditItem(req, res, next) {
     }, function(err, doc) {
       if (err) return next(err);
       if (!doc) doc = {
-        ancestor = []
+        ancestor: []
       };
 
       const ancestor = doc.ancestor;
